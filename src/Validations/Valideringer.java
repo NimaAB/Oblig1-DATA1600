@@ -1,8 +1,7 @@
 package Validations;
 
-import avvikshåntering.InvalidAgeException;
-import avvikshåntering.InvalidDateException;
-import avvikshåntering.InvalidNameException;
+import avvikshåntering.*;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.regex.Pattern;
@@ -38,4 +37,18 @@ public class Valideringer {
             throw new InvalidDateException("Ugyeldig dato: måneden eksisterer ikke!");
         }
     }
+    public static void epostValidate(String ePost) throws InvalidEpostException {
+        boolean ligner = Pattern.matches(".*?@?[^@]*\\.+.*",ePost);
+        if(!ligner){
+            throw new InvalidEpostException("Ugyldig E-post format!");
+        }
+    }
+    public static void tlfnrValidate(String tlfnr) throws InvalidTlfnrException {
+
+        boolean ligner = Pattern.matches("^[+]|[0-9()-]+",tlfnr);
+        if(!ligner){
+            throw new InvalidTlfnrException("Ugyldig telefonnummer format!");
+        }
+    }
+
 }

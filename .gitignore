@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/.gitignore
+.idea/ant.xml
+.idea/artifacts/
+.idea/codeStyles/
+.idea/compiler.xml
+.idea/description.html
+.idea/encodings.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+Oblig1-DATA1600.iml
+src/main/

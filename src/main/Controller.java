@@ -17,26 +17,14 @@ public class Controller {
     private static ArrayList<Person> personRegister = new ArrayList<>();
 
     @FXML
-    private TextField navnTxt;
-
+    private TextField navnTxt,yearTxt,monthTxt,dayTxt,ePosttxt,tlfnrTxt;
     @FXML
-    private TextField yearTxt;
-
+    private Label eNamelbl, eAgeDatelbl, regLbl, epostLbl,tlfnrLbl;
     @FXML
-    private TextField monthTxt;
 
-    @FXML
-    private TextField dayTxt;
+    void registrer(ActionEvent event){
 
-    @FXML
-    private Label eNamelbl, eAgeDatelbl, regLbl;
-
-    @FXML
-    void registrer(ActionEvent event) {
-
-        int year = 0;
-        int month = 0;
-        int day = 0;
+        int year = 0; int month =0; int day=0;
         try{
             year = Integer.parseInt(yearTxt.getText());
             month = Integer.parseInt(monthTxt.getText());
@@ -61,13 +49,30 @@ public class Controller {
             eAgeDatelbl.setText(eda.getMessage());
         }
         Fødselsdato date = new Fødselsdato(date1);
+
+        String ePost = null;
+        try{
+            Valideringer.epostValidate(ePosttxt.getText());
+            ePost = ePosttxt.getText();
+        }catch (InvalidEpostException ep){
+            epostLbl.setText(ep.getMessage());
+        }
+        String tlfnr= null;
+        try{
+            Valideringer.tlfnrValidate(tlfnrTxt.getText());
+            tlfnr = tlfnrTxt.getText();
+        }catch (InvalidTlfnrException etlf){
+            tlfnrLbl.setText(etlf.getMessage());
+        }
         try{
             Valideringer.isNotValidName(navnTxt.getText());
-            enPerson = new Person(navnTxt.getText(), date);
+            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date);
         } catch (InvalidNameException e){
             eNamelbl.setText(e.getMessage());
         }
         personRegister.add(enPerson);
+
+
     }
 
     @FXML

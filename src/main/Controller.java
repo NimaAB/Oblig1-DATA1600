@@ -77,16 +77,15 @@ public class Controller {
 
     @FXML
     void visListe(ActionEvent event){
-        /*String ut = personRegister.toString();
-        regLbl.setText(ut);*/
+
         String ut = "";
         for(Person p : personRegister){
             ut += p;
         }
         regLbl.setText(ut);
 
-        /*TabellReg nyttVindu = new TabellReg();
-        nyttVindu.getClass();*/
+
+
     }
     @FXML
     void removePersons(ActionEvent event){

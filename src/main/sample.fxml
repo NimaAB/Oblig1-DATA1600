@@ -8,38 +8,43 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <AnchorPane prefHeight="505.0" prefWidth="475.0">
-         <children>
-            <Label alignment="CENTER" layoutX="121.0" layoutY="31.0" prefHeight="36.0" prefWidth="199.0" text="Registreringsskjema" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="128.0" prefHeight="17.0" prefWidth="68.0" text="Fullnavn:" />
-            <TextField fx:id="navnTxt" layoutX="150.0" layoutY="124.0" prefHeight="25.0" prefWidth="149.0" />
-            <Button fx:id="register" layoutX="25.0" layoutY="244.0" mnemonicParsing="false" onAction="#registrer" text="Registrer" />
-            <Button fx:id="visliste" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" onAction="#visListe" text="Vis Liste" />
-            <TextField fx:id="yearTxt" layoutX="150.0" layoutY="198.0" prefHeight="25.0" prefWidth="59.0" />
-            <TextField fx:id="monthTxt" layoutX="238.0" layoutY="198.0" prefHeight="25.0" prefWidth="59.0" />
-            <TextField fx:id="dayTxt" layoutX="339.0" layoutY="198.0" prefHeight="25.0" prefWidth="59.0" />
-            <Label layoutX="23.0" layoutY="202.0" prefHeight="17.0" prefWidth="87.0" text="Fødselsdato:" />
-            <Label layoutX="339.0" layoutY="174.0" prefHeight="17.0" prefWidth="68.0" text="Dag" />
-            <Label layoutX="238.0" layoutY="174.0" prefHeight="17.0" prefWidth="68.0" text="Måned" />
-            <Label layoutX="146.0" layoutY="174.0" prefHeight="17.0" prefWidth="68.0" text="År" />
-            <Label fx:id="eNamelbl" layoutX="309.0" layoutY="124.0" prefHeight="25.0" prefWidth="141.0" />
-            <Label fx:id="eAgeDatelbl" layoutX="191.0" layoutY="239.0" prefHeight="44.0" prefWidth="236.0" />
-            <Label fx:id="regLbl" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="-1.0" layoutY="315.0" prefHeight="191.0" prefWidth="477.0" />
-            <Button layoutX="23.0" layoutY="283.0" mnemonicParsing="false" onAction="#removePersons" text="CA" />
-         </children>
-      </AnchorPane>
-   </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="507.0" prefWidth="569.0">
+            <children>
+                <Label alignment="CENTER" layoutX="259.0" layoutY="14.0" prefHeight="36.0" prefWidth="199.0" text="Registreringsskjema" textAlignment="CENTER">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="20.0" layoutY="62.0" prefHeight="17.0" prefWidth="68.0" text="Fullnavn:" />
+                <TextField fx:id="navnTxt" layoutX="110.0" layoutY="66.0" prefHeight="25.0" prefWidth="149.0" />
+                <Button fx:id="register" layoutX="25.0" layoutY="244.0" mnemonicParsing="false" onAction="#registrer" text="Registrer" />
+                <Button fx:id="visliste" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" onAction="#visListe" text="Vis Liste" />
+                <TextField fx:id="yearTxt" layoutX="131.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
+                <TextField fx:id="monthTxt" layoutX="224.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
+                <TextField fx:id="dayTxt" layoutX="313.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
+                <Label layoutX="20.0" layoutY="211.0" prefHeight="17.0" prefWidth="87.0" text="Fødselsdato:" />
+                <Label layoutX="313.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Dag" />
+                <Label layoutX="224.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Måned" />
+                <Label layoutX="131.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="År" />
+                <Label fx:id="eNamelbl" layoutX="310.0" layoutY="66.0" prefHeight="25.0" prefWidth="178.0" />
+                <Label fx:id="eAgeDatelbl" layoutX="389.0" layoutY="198.0" prefHeight="44.0" prefWidth="236.0" />
+                <Label fx:id="regLbl" alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="308.0" prefHeight="199.0" prefWidth="625.0" />
+                <Button layoutX="23.0" layoutY="283.0" mnemonicParsing="false" onAction="#removePersons" text="CA" />
+                <Label layoutX="20.0" layoutY="107.0" prefHeight="17.0" prefWidth="68.0" text="E-post: " />
+                <Label layoutX="20.0" layoutY="141.0" prefHeight="17.0" prefWidth="68.0" text="Tlf.nr.: " />
+                <TextField fx:id="ePosttxt" layoutX="110.0" layoutY="103.0" prefHeight="25.0" prefWidth="230.0" />
+                <TextField fx:id="tlfnrTxt" layoutX="110.0" layoutY="137.0" prefHeight="25.0" prefWidth="230.0" />
+                <Label fx:id="epostLbl" layoutX="368.0" layoutY="103.0" prefHeight="25.0" prefWidth="178.0" />
+                <Label fx:id="tlfnrLbl" layoutX="372.0" layoutY="137.0" prefHeight="25.0" prefWidth="178.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </GridPane>

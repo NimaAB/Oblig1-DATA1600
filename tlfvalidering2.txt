@@ -1,0 +1,8 @@
+public static String[] tlfValidering(String innTlf) throws IOException {
+        String[] output = new String[2];
+        ArrayList<String> str = readFile.readCountryCodes();
+        String[] strs = ParseCountryCodes.getCountryCodes(str,innTlf);
+        output[0] = strs[0];
+        output[1] = strs[1];
+        return output;
+    }

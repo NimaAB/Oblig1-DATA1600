@@ -1,0 +1,46 @@
+public class ParseCountryCodes {
+    public static String[] getCountryCodes(ArrayList<String> list, String innTlf) {
+        ArrayList<String> fileContents = new ArrayList<>();
+        ArrayList<String> countryCodes = new ArrayList<>();
+        ArrayList<String> countries = new ArrayList<>();
+        String[] lines = {};
+        String[] linecontents = {};
+        String[] output = new String[2];
+        boolean valid = false;
+        String country = "";
+        String tlf = "";
+
+        for(String content : list){
+            lines = content.split("\n");
+            fileContents.add(lines[0]);
+        }
+
+        for(String l : fileContents){
+            linecontents = l.split(";");
+            countries.add(linecontents[0]);
+            countryCodes.add(linecontents[1]);
+        }
+
+        for(int i = 0; i < countryCodes.size(); i++){
+            String regex1 = "[+]" + countryCodes.get(i) + "[0-9 \\-]*[0-9]*";
+            valid = Pattern.matches(regex1, innTlf);
+
+            if(!valid || innTlf.isEmpty() || innTlf.length() <= 7 || innTlf.length() >= 16){
+                continue;
+            } else {
+                tlf = innTlf;
+                country = countries.get(i);
+                break;
+            }
+        }
+
+        output[0] = tlf;
+        output[1] = country;
+
+        if(valid){
+            return output;
+        } else {
+            throw new IllegalArgumentException("Error: Ugyldig Telefonnummer");
+        }
+    }
+}

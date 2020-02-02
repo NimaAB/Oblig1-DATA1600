@@ -11,8 +11,16 @@ public class Person {
             this.tlfnr = tlfnr;
             this.fødselsdato = fødselsdato;
     }
-    public String toString() {
-        return name + " | " + fødselsdato.toString() + "|"
-                + epost + "|" + tlfnr + "\n";
+    public String getName(){
+        return name;
+    }
+    public String getEpost(){
+        return epost;
+    }
+    public String getTlfnr(){
+        return tlfnr;
+    }
+    public Fødselsdato getFødselsdato(){
+        return fødselsdato;
     }
 }

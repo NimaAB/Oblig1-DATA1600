@@ -12,8 +12,7 @@ public class Fødselsdato {
         return nå.getYear() - fødselsdato.getYear() - 1;
     }
     public String toString(){
-        String ut = this.fødselsdato+ " | " + beregnAlder(nå,fødselsdato);
-        return ut;
+        return this.fødselsdato+";"+beregnAlder(nå,fødselsdato);
     }
 }
 

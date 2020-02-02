@@ -1,11 +1,11 @@
 package Register;
 
-
+import java.time.LocalDate;
 public class Person {
     private String name, epost, tlfnr;
-    private Fødselsdato fødselsdato;
+    private LocalDate fødselsdato;
 
-    public Person(String name, String epost, String tlfnr, Fødselsdato fødselsdato) {
+    public Person(String name, String epost, String tlfnr, LocalDate fødselsdato) {
             this.name = name;
             this.epost = epost;
             this.tlfnr = tlfnr;
@@ -20,7 +20,11 @@ public class Person {
     public String getTlfnr(){
         return tlfnr;
     }
-    public Fødselsdato getFødselsdato(){
+    public LocalDate getFødselsdato(){
         return fødselsdato;
+    }
+    public int beregnAlder(){
+        java.time.LocalDate nå = java.time.LocalDate.now();
+        return nå.getYear() - fødselsdato.getYear() - 1;
     }
 }

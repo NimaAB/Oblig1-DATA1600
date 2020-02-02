@@ -2,17 +2,17 @@ package main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.util.ArrayList;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 /*Egne pakager-------------*/
-import Register.Fødselsdato;
 import Register.Person;
 import Validations.*;
 import avvikshåntering.*;
 /*----------------------*/
 
 public class Controller {
-    private static  LocalDate date1;
+    private static java.time.LocalDate date1;
     private static Person enPerson;
     private static ArrayList<Person> personRegister = new ArrayList<>();
 
@@ -44,12 +44,10 @@ public class Controller {
         }
         try{
             Valideringer.dateIsAccepted(year,month,day);
-            date1 = LocalDate.of(year,month,day);
+            date1 = java.time.LocalDate.of(year,month,day);
         } catch (InvalidDateException eda){
             eAgeDatelbl.setText(eda.getMessage());
         }
-        Fødselsdato date = new Fødselsdato(date1);
-
         String ePost = null;
         try{
             Valideringer.epostValidate(ePosttxt.getText());
@@ -66,18 +64,15 @@ public class Controller {
         }
         try{
             Valideringer.isNotValidName(navnTxt.getText());
-            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date);
+            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
         } catch (InvalidNameException e){
             eNamelbl.setText(e.getMessage());
         }
         personRegister.add(enPerson);
-
-
     }
 
     @FXML
     void visListe(ActionEvent event){
-
         String ut = "";
         for(Person p : personRegister){
             ut += p;

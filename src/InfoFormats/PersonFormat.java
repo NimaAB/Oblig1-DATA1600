@@ -8,7 +8,7 @@ public class PersonFormat {
     public static String DELIMITER =";"; //En skiletegn mellom Strengene i samme linje i filen.
 
     private static String personFormat(Person enPerson){
-        return enPerson.getName() + DELIMITER+enPerson.getFødselsdato() + DELIMITER
+        return enPerson.getName() + DELIMITER  + enPerson.getFødselsdato() + DELIMITER
                 +enPerson.beregnAlder() + DELIMITER + enPerson.getEpost()
                 + DELIMITER + enPerson.getTlfnr();
     }

@@ -38,7 +38,7 @@ public class Person {
     }
     /**En middlertidig metode. Vi kommer til å slette det etter hvert.*/
     public String toString(){
-        return getName() + getFødselsdato() + beregnAlder() + getTlfnr() + getEpost();
+        return getName() + getFødselsdato() + beregnAlder() + getTlfnr() + getEpost() + "\n";
     }
 }
 //TIPS// nowMåned < måned || nowMåned == måned

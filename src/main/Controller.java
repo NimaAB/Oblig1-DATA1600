@@ -34,33 +34,21 @@ public class Controller {
         }
         try{
             Valideringer.monthofyearValidate(month);
-        }catch (InvalidDateException eda){
-            eAgeDatelbl.setText(eda.getMessage());
-        }
-        try{
             Valideringer.daysOfMonthValidate(day,month,year);
-        }catch (InvalidDateException eda){
-            eAgeDatelbl.setText(eda.getMessage());
-        }
-        try{
             Valideringer.dateIsAccepted(year,month,day);
-            date1 = java.time.LocalDate.of(year,month,day);
-        } catch (InvalidDateException eda){
-            eAgeDatelbl.setText(eda.getMessage());
+        }catch (InvalidDateException e){
+            eAgeDatelbl.setText(e.getMessage());
         }
+        date1 = LocalDate.of(year,month,day);
         String ePost = null;
+        String tlfnr= null;
         try{
             Valideringer.epostValidate(ePosttxt.getText());
             ePost = ePosttxt.getText();
-        }catch (InvalidEpostException ep){
-            epostLbl.setText(ep.getMessage());
-        }
-        String tlfnr= null;
-        try{
             Valideringer.tlfnrValidate(tlfnrTxt.getText());
             tlfnr = tlfnrTxt.getText();
-        }catch (InvalidTlfnrException etlf){
-            tlfnrLbl.setText(etlf.getMessage());
+        }catch (InvalidEpostException | InvalidTlfnrException e){
+            epostLbl.setText(e.getMessage());
         }
         try{
             Valideringer.isNotValidName(navnTxt.getText());

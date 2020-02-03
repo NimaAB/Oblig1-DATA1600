@@ -38,7 +38,9 @@ public class Valideringer {
         }
     }
     public static void epostValidate(String ePost) throws InvalidEpostException {
-        boolean ligner = Pattern.matches(".*?@?[^@]*\\.+.*",ePost);
+        boolean ligner = Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
+                "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]" +
+                "(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",ePost);
         if(!ligner){
             throw new InvalidEpostException("Ugyldig E-post format!");
         }

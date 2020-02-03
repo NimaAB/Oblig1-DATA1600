@@ -8,13 +8,10 @@ import java.util.ArrayList;
 /*Egne pakager-------------*/
 import Register.Person;
 import Validations.*;
-import avvikshåntering.*;
 /*----------------------*/
 
 public class Controller {
-    private static String tlfnr;
-    private static String ePost;
-    private static LocalDate date1;
+
     private static Person enPerson;
     private static ArrayList<Person> personRegister = new ArrayList<>();
 
@@ -25,45 +22,26 @@ public class Controller {
     @FXML
 
     void registrer(ActionEvent event){
-        boolean sjekk = true;
-        int year = 0; int month =0; int day=0;
-        try{
-            year = Integer.parseInt(yearTxt.getText());
-            month = Integer.parseInt(monthTxt.getText());
-            day = Integer.parseInt(dayTxt.getText());
-        } catch (NumberFormatException e){
-            eAgeDatelbl.setText(e.getMessage());
-            sjekk = false;
-        }
-        try{
-            Valideringer.dateIsAccepted(year,month,day);
-        }catch (InvalidDateException e){
-            eAgeDatelbl.setText(e.getMessage());
-            sjekk = false;
-        }
-        try{
-            Valideringer.epostValidate(ePosttxt.getText());
-            ePost = ePosttxt.getText();
-        }catch (InvalidEpostException e) {
-            epostLbl.setText(e.getMessage());
-            sjekk = false;
-        }
-        try{
-            Valideringer.tlfnrValidate(tlfnrTxt.getText());
-            tlfnr = tlfnrTxt.getText();
-        }catch (InvalidTlfnrException e){
-            tlfnrLbl.setText(e.getMessage());
-            sjekk = false;
-        }
-        try{
-            Valideringer.isNotValidName(navnTxt.getText());
-        } catch (InvalidNameException e){
-            eNamelbl.setText(e.getMessage());
-            sjekk = false;
-        }
-        if(sjekk){
-            date1 = LocalDate.of(year,month,day);
-            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
+        String nameValidate = Sjekk.validateName(navnTxt.getText());
+        eNamelbl.setText(nameValidate);
+        String epostValidate = Sjekk.validateEpost(ePosttxt.getText());
+        epostLbl.setText(epostValidate);
+        String tlfnrValidate = Sjekk.validateTlfnr(tlfnrTxt.getText());
+        tlfnrLbl.setText(tlfnrValidate);
+
+        String innYear = yearTxt.getText();
+        String innMonth = monthTxt.getText();
+        String innDay = dayTxt.getText();
+        String numformat = Sjekk.feilNummerFormat(innYear,innMonth,innDay);
+        eAgeDatelbl.setText(numformat);
+        String dateValidation = Sjekk.validationMsgDate(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
+        eAgeDatelbl.setText(dateValidation);
+
+
+
+        if(Sjekk.sjekk){
+            LocalDate date1=LocalDate.of(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
+            enPerson = new Person(navnTxt.getText(), ePosttxt.getText(),tlfnrTxt.getText(), date1);
             personRegister.add(enPerson);
         }
 

@@ -12,7 +12,7 @@ import avvikshåntering.*;
 /*----------------------*/
 
 public class Controller {
-    private static java.time.LocalDate date1;
+    private static LocalDate date1;
     private static Person enPerson;
     private static ArrayList<Person> personRegister = new ArrayList<>();
 
@@ -34,32 +34,37 @@ public class Controller {
         }
         try{
             Valideringer.monthofyearValidate(month);
-            Valideringer.daysOfMonthValidate(day,month,year);
-            Valideringer.dateIsAccepted(year,month,day);
-
         }catch (InvalidDateException e){
             eAgeDatelbl.setText(e.getMessage());
         }
-        date1 = LocalDate.of(year,month,day);
+        try{
+            Valideringer.daysOfMonthValidate(day,month,year);
+            Valideringer.dateIsAccepted(year,month,day);
+            date1 = LocalDate.of(year,month,day);
+        }catch (InvalidDateException e){
+            eAgeDatelbl.setText(e.getMessage());
+        }
         String ePost ="";
         String tlfnr="";
         try{
             Valideringer.epostValidate(ePosttxt.getText());
             ePost = ePosttxt.getText();
+        }catch (InvalidEpostException e) {
+            epostLbl.setText(e.getMessage());
+        }
+        try{
             Valideringer.tlfnrValidate(tlfnrTxt.getText());
             tlfnr = tlfnrTxt.getText();
-        }catch (InvalidEpostException e){
-            epostLbl.setText(e.getMessage());
         }catch (InvalidTlfnrException e){
             tlfnrLbl.setText(e.getMessage());
         }
         try{
             Valideringer.isNotValidName(navnTxt.getText());
             enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
+            personRegister.add(enPerson);
         } catch (InvalidNameException e){
             eNamelbl.setText(e.getMessage());
         }
-        personRegister.add(enPerson);
     }
 
     @FXML

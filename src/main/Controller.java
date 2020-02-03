@@ -36,12 +36,13 @@ public class Controller {
             Valideringer.monthofyearValidate(month);
             Valideringer.daysOfMonthValidate(day,month,year);
             Valideringer.dateIsAccepted(year,month,day);
+
         }catch (InvalidDateException e){
             eAgeDatelbl.setText(e.getMessage());
         }
         date1 = LocalDate.of(year,month,day);
-        String ePost = null;
-        String tlfnr= null;
+        String ePost = "";
+        String tlfnr= "";
         try{
             Valideringer.epostValidate(ePosttxt.getText());
             ePost = ePosttxt.getText();
@@ -49,6 +50,7 @@ public class Controller {
             tlfnr = tlfnrTxt.getText();
         }catch (InvalidEpostException | InvalidTlfnrException e){
             epostLbl.setText(e.getMessage());
+            tlfnrLbl.setText(e.getMessage());
         }
         try{
             Valideringer.isNotValidName(navnTxt.getText());

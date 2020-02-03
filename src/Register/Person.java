@@ -13,6 +13,7 @@ public class Person {
             this.tlfnr = tlfnr;
             this.fødselsdato = fødselsdato;
     }
+
     public String getName(){
         return name;
     }

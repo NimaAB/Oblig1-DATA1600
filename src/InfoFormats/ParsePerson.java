@@ -9,7 +9,6 @@ public class ParsePerson {
         if(linjeArray.length != 5){
             throw new InvalidPersonFormatException("Feil bruk av skiletegn.");
         }
-        String name =
         return null;
     }
 }

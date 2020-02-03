@@ -21,22 +21,18 @@ public class Valideringer {
     public static void dateIsAccepted(int year,int month, int day) throws InvalidDateException {
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.of(year, month, day);
-        if(date.isAfter(now) || year<1900){
-            throw new InvalidDateException("Ugyeldig dato eller år");
-        }
-    }
-    public static void daysOfMonthValidate(int day,int month, int year)throws InvalidDateException{
         YearMonth yearMonthObj = YearMonth.of(year,month);
         int daysInMonth = yearMonthObj.lengthOfMonth();
-        if(day > daysInMonth || day < 1){
-            throw new InvalidDateException("Feil dag!");
+
+        boolean dateNotExcepted =  date.isAfter(now) || year<1900;
+        boolean dayNotExcepted = day > daysInMonth || day < 1;
+        boolean monthNotExcepted = month >13 || month<1;
+
+        if(dateNotExcepted || dayNotExcepted || monthNotExcepted ){
+            throw new InvalidDateException("Ugyeldig dato");
         }
     }
-    public static void monthofyearValidate(int month)throws InvalidDateException{
-        if(month >13 || month<1){
-            throw new InvalidDateException("Ugyeldig dato: måneden eksisterer ikke!");
-        }
-    }
+
     public static void epostValidate(String ePost) throws InvalidEpostException {
         boolean ligner = Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
                 "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]" +

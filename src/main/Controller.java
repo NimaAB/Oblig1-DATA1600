@@ -12,6 +12,8 @@ import avvikshåntering.*;
 /*----------------------*/
 
 public class Controller {
+    private static String tlfnr;
+    private static String ePost;
     private static LocalDate date1;
     private static Person enPerson;
     private static ArrayList<Person> personRegister = new ArrayList<>();
@@ -23,7 +25,7 @@ public class Controller {
     @FXML
 
     void registrer(ActionEvent event){
-        boolean c = true;
+        boolean sjekk = true;
         int year = 0; int month =0; int day=0;
         try{
             year = Integer.parseInt(yearTxt.getText());
@@ -31,49 +33,40 @@ public class Controller {
             day = Integer.parseInt(dayTxt.getText());
         } catch (NumberFormatException e){
             eAgeDatelbl.setText(e.getMessage());
-            c=false;
+            sjekk = false;
         }
         try{
-            Valideringer.monthofyearValidate(month);
-        }catch (InvalidDateException e){
-            eAgeDatelbl.setText(e.getMessage());
-            c=false;
-        }
-        try{
-            Valideringer.daysOfMonthValidate(day,month,year);
             Valideringer.dateIsAccepted(year,month,day);
-            date1 = LocalDate.of(year,month,day);
         }catch (InvalidDateException e){
             eAgeDatelbl.setText(e.getMessage());
-            c=false;
+            sjekk = false;
         }
-        String ePost ="";
-        String tlfnr="";
         try{
             Valideringer.epostValidate(ePosttxt.getText());
             ePost = ePosttxt.getText();
         }catch (InvalidEpostException e) {
             epostLbl.setText(e.getMessage());
-            c=false;
+            sjekk = false;
         }
         try{
             Valideringer.tlfnrValidate(tlfnrTxt.getText());
             tlfnr = tlfnrTxt.getText();
         }catch (InvalidTlfnrException e){
             tlfnrLbl.setText(e.getMessage());
-            c=false;
+            sjekk = false;
         }
-
-        if (c==true){
         try{
             Valideringer.isNotValidName(navnTxt.getText());
-            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
-            personRegister.add(enPerson);
         } catch (InvalidNameException e){
             eNamelbl.setText(e.getMessage());
+            sjekk = false;
+        }
+        if(sjekk){
+            date1 = LocalDate.of(year,month,day);
+            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
+            personRegister.add(enPerson);
+        }
 
-        }
-        }
     }
 
     @FXML

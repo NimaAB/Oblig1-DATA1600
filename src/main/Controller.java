@@ -23,7 +23,7 @@ public class Controller {
     @FXML
 
     void registrer(ActionEvent event){
-
+        boolean c = true;
         int year = 0; int month =0; int day=0;
         try{
             year = Integer.parseInt(yearTxt.getText());
@@ -31,11 +31,13 @@ public class Controller {
             day = Integer.parseInt(dayTxt.getText());
         } catch (NumberFormatException e){
             eAgeDatelbl.setText(e.getMessage());
+            c=false;
         }
         try{
             Valideringer.monthofyearValidate(month);
         }catch (InvalidDateException e){
             eAgeDatelbl.setText(e.getMessage());
+            c=false;
         }
         try{
             Valideringer.daysOfMonthValidate(day,month,year);
@@ -43,6 +45,7 @@ public class Controller {
             date1 = LocalDate.of(year,month,day);
         }catch (InvalidDateException e){
             eAgeDatelbl.setText(e.getMessage());
+            c=false;
         }
         String ePost ="";
         String tlfnr="";
@@ -51,19 +54,25 @@ public class Controller {
             ePost = ePosttxt.getText();
         }catch (InvalidEpostException e) {
             epostLbl.setText(e.getMessage());
+            c=false;
         }
         try{
             Valideringer.tlfnrValidate(tlfnrTxt.getText());
             tlfnr = tlfnrTxt.getText();
         }catch (InvalidTlfnrException e){
             tlfnrLbl.setText(e.getMessage());
+            c=false;
         }
+
+        if (c==true){
         try{
             Valideringer.isNotValidName(navnTxt.getText());
             enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
             personRegister.add(enPerson);
         } catch (InvalidNameException e){
             eNamelbl.setText(e.getMessage());
+
+        }
         }
     }
 

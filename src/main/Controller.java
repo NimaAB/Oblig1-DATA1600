@@ -1,13 +1,14 @@
 package main;
+import Validations.Valideringer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 /*Egne pakager-------------*/
 import Register.Person;
-import Validations.*;
 import avvikshåntering.*;
 /*----------------------*/
 
@@ -24,7 +25,8 @@ public class Controller {
     private Label eNamelbl, eAgeDatelbl, regLbl, epostLbl,tlfnrLbl;
     @FXML
 
-    void registrer(ActionEvent event){
+    void registrer(ActionEvent event) {
+
         boolean sjekk = true;
         int year = 0; int month =0; int day=0;
         try{
@@ -37,7 +39,7 @@ public class Controller {
         }
         try{
             Valideringer.dateIsAccepted(year,month,day);
-        }catch (InvalidDateException e){
+        }catch (DateTimeException e){
             eAgeDatelbl.setText(e.getMessage());
             sjekk = false;
         }
@@ -66,7 +68,6 @@ public class Controller {
             enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
             personRegister.add(enPerson);
         }
-
     }
 
     @FXML

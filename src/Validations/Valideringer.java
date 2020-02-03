@@ -2,6 +2,7 @@ package Validations;
 
 import avvikshåntering.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ public class Valideringer {
             throw new InvalidAgeException("Ugyeldig alder");
         }
     }
-    public static void dateIsAccepted(int year,int month, int day) throws InvalidDateException {
+    public static void dateIsAccepted(int year,int month, int day) throws DateTimeException {
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.of(year, month, day);
         YearMonth yearMonthObj = YearMonth.of(year,month);

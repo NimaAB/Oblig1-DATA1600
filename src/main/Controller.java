@@ -41,15 +41,16 @@ public class Controller {
             eAgeDatelbl.setText(e.getMessage());
         }
         date1 = LocalDate.of(year,month,day);
-        String ePost = "";
-        String tlfnr= "";
+        String ePost ="";
+        String tlfnr="";
         try{
             Valideringer.epostValidate(ePosttxt.getText());
             ePost = ePosttxt.getText();
             Valideringer.tlfnrValidate(tlfnrTxt.getText());
             tlfnr = tlfnrTxt.getText();
-        }catch (InvalidEpostException | InvalidTlfnrException e){
+        }catch (InvalidEpostException e){
             epostLbl.setText(e.getMessage());
+        }catch (InvalidTlfnrException e){
             tlfnrLbl.setText(e.getMessage());
         }
         try{

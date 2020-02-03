@@ -73,14 +73,11 @@ public class Controller {
 
     @FXML
     void visListe(ActionEvent event){
-        String ut = "";
+        StringBuilder ut = new StringBuilder();
         for(Person p : personRegister){
-            ut += p;
+            ut.append(p.toString());
         }
-        regLbl.setText(ut);
-
-
-
+        regLbl.setText(ut.toString());
     }
     @FXML
     void removePersons(ActionEvent event){

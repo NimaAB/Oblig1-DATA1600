@@ -1,6 +1,8 @@
 package Register;
 
 import java.time.LocalDate;
+import java.time.Month;
+
 public class Person {
     private String name, epost, tlfnr;
     private LocalDate fødselsdato;
@@ -23,8 +25,20 @@ public class Person {
     public LocalDate getFødselsdato(){
         return fødselsdato;
     }
-    public int beregnAlder(){
-        java.time.LocalDate nå = java.time.LocalDate.now();
-        return nå.getYear() - fødselsdato.getYear() - 1;
+    public int beregnAlder(){ //Forberdret litt: fortsatt litt mer plass til forberdring av metoden.
+        LocalDate nå = LocalDate.now();
+        Month nåMonth = nå.getMonth();
+        int nowMonthValue = nåMonth.getValue();
+        int fødselsdatoMonthValue = fødselsdato.getMonth().getValue();
+        int age = nå.getYear() - fødselsdato.getYear();
+        if(nowMonthValue < fødselsdatoMonthValue || nowMonthValue == fødselsdatoMonthValue){
+            age -=1;
+        }
+        return age;
+    }
+    /**En middlertidig metode. Vi kommer til å slette det etter hvert.*/
+    public String toString(){
+        return getName() + getFødselsdato() + beregnAlder() + getTlfnr() + getEpost();
     }
 }
+//TIPS// nowMåned < måned || nowMåned == måned

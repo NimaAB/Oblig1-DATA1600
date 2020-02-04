@@ -22,24 +22,24 @@ public class Controller {
     @FXML
 
     void registrer(ActionEvent event){
-        String nameValidate = Sjekk.validateName(navnTxt.getText());
-        eNamelbl.setText(nameValidate);
-        String epostValidate = Sjekk.validateEpost(ePosttxt.getText());
-        epostLbl.setText(epostValidate);
-        String tlfnrValidate = Sjekk.validateTlfnr(tlfnrTxt.getText());
-        tlfnrLbl.setText(tlfnrValidate);
-
+        boolean nameValidate = Sjekk.validateName(navnTxt.getText());
+        //eNamelbl.setText(nameValidate);
+        boolean epostValidate = Sjekk.validateEpost(ePosttxt.getText());
+        //epostLbl.setText(epostValidate);
+        boolean tlfnrValidate = Sjekk.validateTlfnr(tlfnrTxt.getText());
+        //tlfnrLbl.setText(tlfnrValidate);
         String innYear = yearTxt.getText();
         String innMonth = monthTxt.getText();
         String innDay = dayTxt.getText();
-        String numformat = Sjekk.feilNummerFormat(innYear,innMonth,innDay);
-        eAgeDatelbl.setText(numformat);
-        String dateValidation = Sjekk.validationMsgDate(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
-        eAgeDatelbl.setText(dateValidation);
+        boolean numformat = Sjekk.feilNummerFormat(innYear,innMonth,innDay);
+        boolean dateValidation = Sjekk.validationMsgDate(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
+        eAgeDatelbl.setText(Sjekk.melding);
 
+        boolean allowAddObj = nameValidate && epostValidate && tlfnrValidate && numformat && dateValidation;
 
-
-        if(Sjekk.sjekk){
+        //eAgeDatelbl.setText(dateValidation);
+        if(allowAddObj){
+            eAgeDatelbl.setText("");
             LocalDate date1=LocalDate.of(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
             enPerson = new Person(navnTxt.getText(), ePosttxt.getText(),tlfnrTxt.getText(), date1);
             personRegister.add(enPerson);

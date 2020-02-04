@@ -14,7 +14,6 @@ public class Valideringer {
             throw new InvalidNameException("Feil navn format");
         }
     }
-
     public static void dateIsAccepted(int year,int month, int day) throws DateTimeException {
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.of(year, month, day);

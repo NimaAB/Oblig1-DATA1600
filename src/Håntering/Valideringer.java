@@ -1,6 +1,6 @@
-package Validations;
+package Håntering;
 
-import avvikshåntering.*;
+import avvik.*;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

@@ -62,9 +62,16 @@ public class Controller {
             sjekk = false;
         }
         if(sjekk){
-            date1 = LocalDate.of(year,month,day);
-            enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
-            personRegister.add(enPerson);
+            try {
+                date1 = LocalDate.of(year,month,day);
+                enPerson = new Person(navnTxt.getText(), ePost,tlfnr, date1);
+                personRegister.add(enPerson);
+            }catch (Exception e){
+                System.out.println("Feil håndtert");
+            }
+
+
+
         }
 
     }

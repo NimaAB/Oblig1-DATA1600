@@ -14,11 +14,7 @@ public class Valideringer {
             throw new InvalidNameException("Feil navn format");
         }
     }
-    public static void ageIsAccepted(int alder) throws InvalidAgeException{
-        if(alder>120 || alder<0){
-            throw new InvalidAgeException("Ugyeldig alder");
-        }
-    }
+
     public static void dateIsAccepted(int year,int month, int day) throws DateTimeException {
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.of(year, month, day);

@@ -38,12 +38,12 @@ public class Controller {
         eAgeDatelbl.setText(dateValidation);
 
 
-
         if(Sjekk.sjekk){
             LocalDate date1=LocalDate.of(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
             enPerson = new Person(navnTxt.getText(), ePosttxt.getText(),tlfnrTxt.getText(), date1);
             personRegister.add(enPerson);
         }
+
 
     }
 

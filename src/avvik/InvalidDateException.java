@@ -1,4 +1,4 @@
-package avvikshåntering;
+package avvik;
 
 import java.time.DateTimeException;
 

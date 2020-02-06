@@ -1,12 +1,12 @@
-package Validations;
+package Håntering;
 
-import avvikshåntering.InvalidEpostException;
-import avvikshåntering.InvalidNameException;
-import avvikshåntering.InvalidTlfnrException;
+import avvik.InvalidEpostException;
+import avvik.InvalidNameException;
+import avvik.InvalidTlfnrException;
 
 import java.time.DateTimeException;
 
-public class Sjekk {
+public class avikkHåntering {
     public static int outYear, outMonth, outDay;
     public static String melding = "";
 
@@ -15,7 +15,6 @@ public class Sjekk {
         boolean sjekk = true;
         try{
             Valideringer.isNotValidName(name);
-
         } catch (InvalidNameException e){
             melding=e.getMessage();
             sjekk = false;

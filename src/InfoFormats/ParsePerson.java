@@ -1,7 +1,7 @@
 package InfoFormats;
 
 import Register.Person;
-import avvikshåntering.InvalidPersonFormatException;
+import avvik.InvalidPersonFormatException;
 
 public class ParsePerson {
     public static Person parsePerson(String str) throws InvalidPersonFormatException{

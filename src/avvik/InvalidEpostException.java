@@ -1,4 +1,4 @@
-package avvikshåntering;
+package avvik;
 
 public class InvalidEpostException extends Exception{
     public InvalidEpostException(String msg){

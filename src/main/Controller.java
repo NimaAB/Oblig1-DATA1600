@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 /*Egne pakager-------------*/
 import Register.Person;
-import Validations.*;
+import Håntering.*;
 /*----------------------*/
 
 public class Controller {
@@ -22,25 +22,25 @@ public class Controller {
     @FXML
 
     void registrer(ActionEvent event){
-        boolean nameValidate = Sjekk.validateName(navnTxt.getText());
+        boolean nameValidate = avikkHåntering.validateName(navnTxt.getText());
         //eNamelbl.setText(nameValidate);
-        boolean epostValidate = Sjekk.validateEpost(ePosttxt.getText());
+        boolean epostValidate = avikkHåntering.validateEpost(ePosttxt.getText());
         //epostLbl.setText(epostValidate);
-        boolean tlfnrValidate = Sjekk.validateTlfnr(tlfnrTxt.getText());
+        boolean tlfnrValidate = avikkHåntering.validateTlfnr(tlfnrTxt.getText());
         //tlfnrLbl.setText(tlfnrValidate);
         String innYear = yearTxt.getText();
         String innMonth = monthTxt.getText();
         String innDay = dayTxt.getText();
-        boolean numformat = Sjekk.feilNummerFormat(innYear,innMonth,innDay);
-        boolean dateValidation = Sjekk.validationMsgDate(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
-        eAgeDatelbl.setText(Sjekk.melding);
+        boolean numformat = avikkHåntering.feilNummerFormat(innYear,innMonth,innDay);
+        boolean dateValidation = avikkHåntering.validationMsgDate(avikkHåntering.outYear, avikkHåntering.outMonth, avikkHåntering.outDay);
+        eAgeDatelbl.setText(avikkHåntering.melding);
 
         boolean allowAddObj = nameValidate && epostValidate && tlfnrValidate && numformat && dateValidation;
 
         //eAgeDatelbl.setText(dateValidation);
         if(allowAddObj){
             eAgeDatelbl.setText("");
-            LocalDate date1=LocalDate.of(Sjekk.outYear,Sjekk.outMonth,Sjekk.outDay);
+            LocalDate date1=LocalDate.of(avikkHåntering.outYear, avikkHåntering.outMonth, avikkHåntering.outDay);
             enPerson = new Person(navnTxt.getText(), ePosttxt.getText(),tlfnrTxt.getText(), date1);
             personRegister.add(enPerson);
         }

@@ -6,13 +6,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-//import java.nio.file.Files;
-
-import java.nio.file.Path;
-import java.util.List;
 
 public class WriterTxt implements WriterInteface {
-
     public void save(String objString, File filePath, int numberOfLines){
         FileWriter writerParamTo_fWriter;
         BufferedWriter fWriter = null;
@@ -26,11 +21,10 @@ public class WriterTxt implements WriterInteface {
                     System.err.println(e.getMessage());
                 }
                 try{
+                    assert fWriter != null;//Java føreslo dette har ingen ide.
                     fWriter.close();
                 }catch (IOException e){
                     System.err.println(e.getMessage());
                 }
-
-        //Files.write(file, objects.toString().getBytes());
     }
 }

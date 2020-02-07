@@ -18,7 +18,6 @@ import Håntering.avikkHåntering;
 
 public class Controller {
     private static ArrayList<Person> personRegister = new ArrayList<>();
-    //private  static ArrayList<PersonFormat> personRegister = new ArrayList<>();
     @FXML
     private TextField navnTxt,yearTxt,monthTxt,dayTxt,ePosttxt,tlfnrTxt;
     @FXML
@@ -55,14 +54,15 @@ public class Controller {
     }
     @FXML
     void saving(ActionEvent event) throws IOException {
-        File filepath = new File("D:/Oblig1-DATA1600/src/Person.txt");
-        //Path filepath = Paths.get("D:/Oblig1-DATA1600/src/Person.txt");
-        WriterTxt SavingtestObj = new WriterTxt();
 
+        String str = "D:/Oblig1-DATA1600/src/Person.txt"; //endre verdien med en pathNameTxt.getText()
+        File filepath = new File(str);
+        WriterTxt SavingtestObj = new WriterTxt();
         String objString = PersonFormat.folkFormat(personRegister);
         SavingtestObj.save(objString,filepath,personRegister.size());
     }
-
+    //legges til: Open knap som implimenterer ReaderTxt.metoder
+    //fil velges med samme pathNameTxt field.
     @FXML
     void removePersons(ActionEvent event){
         regLbl.setText("");

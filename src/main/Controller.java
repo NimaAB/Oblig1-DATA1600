@@ -1,7 +1,16 @@
 package main;
+import FileHandling.Writer.WriterTxt;
+import FileHandling.WriterInteface;
+import InfoFormats.PersonFormat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import Register.Person;
@@ -43,6 +52,17 @@ public class Controller {
         }
         regLbl.setText(ut.toString());
     }
+    @FXML
+    void saving(ActionEvent event) throws IOException {
+
+        String str = "D:/Oblig1-DATA1600/src/Person.txt"; //endre verdien med en pathNameTxt.getText()
+        File filepath = new File(str);
+        WriterTxt SavingtestObj = new WriterTxt();
+        String objString = PersonFormat.folkFormat(personRegister);
+        SavingtestObj.save(objString,filepath,personRegister.size());
+    }
+    //legges til: Open knap som implimenterer ReaderTxt.metoder
+    //fil velges med samme pathNameTxt field.
     @FXML
     void removePersons(ActionEvent event){
         regLbl.setText("");

@@ -7,7 +7,7 @@ import avvik.InvalidTlfnrException;
 import java.time.DateTimeException;
 
 public class avikkHåntering {
-    public static int [] dateNumFormat;
+    public static int outYear,outMonth,outDay;
     public static String melding = "";
 
     public static boolean isValidateName(String name){
@@ -20,22 +20,22 @@ public class avikkHåntering {
         }
         return sjekk;
     }
-    public static boolean isValidNumFormat(String[] date){
+    public static boolean isValidNumFormat(String ... date){
         boolean sjekk = true;
         try{
-            dateNumFormat[0]=Integer.parseInt(date[0]); //year
-            dateNumFormat[1]=Integer.parseInt(date[1]);//month
-            dateNumFormat[2]=Integer.parseInt(date[2]);//day
+            outYear = Integer.parseInt(date[0]); //year
+            outMonth=Integer.parseInt(date[1]);//month
+            outDay=Integer.parseInt(date[2]);//day
         } catch (NumberFormatException e){
             melding = e.getMessage();
             sjekk = false;
         }
         return sjekk;
     }
-    public static boolean isValidDate(int [] datenumFormat) {
+    public static boolean isValidDate(int year,int month,int day) {
         boolean sjekk = true;
         try {
-            Valideringer.dateIsAccepted(datenumFormat[0],datenumFormat[1],datenumFormat[2]);
+            Valideringer.dateIsAccepted(year,month,day);
         } catch (DateTimeException e) {
             melding = e.getMessage();
             sjekk = false;

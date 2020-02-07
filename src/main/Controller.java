@@ -19,12 +19,11 @@ public class Controller {
         String innYear = yearTxt.getText();
         String innMonth = monthTxt.getText();
         String innDay = dayTxt.getText();
-        String[] date ={ innYear, innMonth, innDay};
-        boolean numformat = avikkHåntering.isValidNumFormat(date);
-        int year = avikkHåntering.dateNumFormat[0];
-        int month = avikkHåntering.dateNumFormat[1];
-        int day = avikkHåntering.dateNumFormat[2];
-        boolean dateValidation = avikkHåntering.isValidDate(avikkHåntering.dateNumFormat);
+        boolean numformat = avikkHåntering.isValidNumFormat(innYear, innMonth, innDay);
+        int year = avikkHåntering.outYear;
+        int month = avikkHåntering.outMonth;
+        int day = avikkHåntering.outDay;
+        boolean dateValidation = avikkHåntering.isValidDate(year,month,day);
         boolean epostValidate = avikkHåntering.isValidEpost(ePosttxt.getText());
         boolean tlfnrValidate = avikkHåntering.isValidTlfnr(tlfnrTxt.getText());
         InvalidMsgLbl.setText(avikkHåntering.melding);

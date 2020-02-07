@@ -36,7 +36,7 @@
                 <Label layoutX="224.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Måned" />
                 <Label layoutX="131.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="År" />
                 <Label fx:id="eNamelbl" layoutX="310.0" layoutY="66.0" prefHeight="25.0" prefWidth="178.0" />
-                <Label fx:id="eAgeDatelbl" layoutX="389.0" layoutY="198.0" prefHeight="44.0" prefWidth="236.0" />
+                <Label fx:id="InvalidMsgLbl" layoutX="389.0" layoutY="198.0" prefHeight="44.0" prefWidth="236.0" />
                 <Label fx:id="regLbl" alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="308.0" prefHeight="199.0" prefWidth="625.0" />
                 <Button layoutX="23.0" layoutY="283.0" mnemonicParsing="false" onAction="#removePersons" text="CA" />
                 <Label layoutX="20.0" layoutY="107.0" prefHeight="17.0" prefWidth="68.0" text="E-post: " />

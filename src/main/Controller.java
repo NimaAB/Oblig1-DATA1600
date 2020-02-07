@@ -1,7 +1,16 @@
 package main;
+import FileHandling.Writer.WriterTxt;
+import FileHandling.WriterInteface;
+import InfoFormats.PersonFormat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import Register.Person;
@@ -9,6 +18,7 @@ import Håntering.avikkHåntering;
 
 public class Controller {
     private static ArrayList<Person> personRegister = new ArrayList<>();
+    //private  static ArrayList<PersonFormat> personRegister = new ArrayList<>();
     @FXML
     private TextField navnTxt,yearTxt,monthTxt,dayTxt,ePosttxt,tlfnrTxt;
     @FXML
@@ -43,6 +53,16 @@ public class Controller {
         }
         regLbl.setText(ut.toString());
     }
+    @FXML
+    void saving(ActionEvent event) throws IOException {
+        File filepath = new File("D:/Oblig1-DATA1600/src/Person.txt");
+        //Path filepath = Paths.get("D:/Oblig1-DATA1600/src/Person.txt");
+        WriterTxt SavingtestObj = new WriterTxt();
+
+        String objString = PersonFormat.folkFormat(personRegister);
+        SavingtestObj.save(objString,filepath,personRegister.size());
+    }
+
     @FXML
     void removePersons(ActionEvent event){
         regLbl.setText("");

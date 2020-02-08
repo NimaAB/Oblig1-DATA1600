@@ -46,6 +46,8 @@
                 <Label fx:id="epostLbl" layoutX="368.0" layoutY="103.0" prefHeight="25.0" prefWidth="178.0" />
                 <Label fx:id="tlfnrLbl" layoutX="372.0" layoutY="137.0" prefHeight="25.0" prefWidth="178.0" />
             <Button layoutX="71.0" layoutY="283.0" mnemonicParsing="false" onAction="#saving" prefHeight="25.0" prefWidth="158.0" text="Save List in file" />
+            <Button layoutX="241.0" layoutY="283.0" mnemonicParsing="false" onAction="#reader" prefHeight="25.0" prefWidth="158.0" text="read file" />
+            <TextField fx:id="pathTxt" layoutX="195.0" layoutY="244.0" prefHeight="25.0" prefWidth="261.0" promptText="Path String" />
             </children>
         </AnchorPane>
     </children>

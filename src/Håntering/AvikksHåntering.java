@@ -2,18 +2,19 @@ package Håntering;
 
 import avvik.InvalidEpostException;
 import avvik.InvalidNameException;
+import avvik.InvalidStiException;
 import avvik.InvalidTlfnrException;
 
 import java.time.DateTimeException;
 
-public class avikkHåntering {
+public class AvikksHåntering {
     public static int outYear,outMonth,outDay;
     public static String melding = "";
 
     public static boolean isValidateName(String name){
         boolean sjekk = true;
         try{
-            Valideringer.isNotValidName(name);
+            Valideringer.nameInputValidering(name);
         } catch (InvalidNameException e){
             melding=e.getMessage();
             sjekk = false;
@@ -35,7 +36,7 @@ public class avikkHåntering {
     public static boolean isValidDate(int year,int month,int day) {
         boolean sjekk = true;
         try {
-            Valideringer.dateIsAccepted(year,month,day);
+            Valideringer.dateInputValidering(year,month,day);
         } catch (DateTimeException e) {
             melding = e.getMessage();
             sjekk = false;
@@ -45,7 +46,7 @@ public class avikkHåntering {
     public static boolean isValidEpost(String epost){
         boolean sjekk = true;
         try{
-            Valideringer.epostValidate(epost);
+            Valideringer.ePostInputValidering(epost);
 
         } catch (InvalidEpostException e){
             melding=e.getMessage();
@@ -56,11 +57,19 @@ public class avikkHåntering {
     public static boolean isValidTlfnr(String tlfnr){
         boolean sjekk = true;
         try{
-            Valideringer.tlfnrValidate(tlfnr);
+            Valideringer.tlfnrInputValidering(tlfnr);
         } catch (InvalidTlfnrException e){
             melding=e.getMessage();
             sjekk = false;
         }
         return sjekk;
+    }
+    public static String pathInputhandling(String path){
+        try{
+            Valideringer.pathInputValidering(path);
+        }catch (InvalidStiException e){
+            melding = e.getMessage();
+        }
+        return path;
     }
 }

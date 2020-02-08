@@ -59,7 +59,7 @@ public class Controller {
         File filepath = new File(str);
         WriterTxt SavingtestObj = new WriterTxt();
         String objString = PersonFormat.folkFormat(personRegister);
-        SavingtestObj.save(objString,filepath,personRegister.size());
+        SavingtestObj.save(objString,filepath,1);
     }
     //legges til: Open knap som implimenterer ReaderTxt.metoder
     //fil velges med samme pathNameTxt field.

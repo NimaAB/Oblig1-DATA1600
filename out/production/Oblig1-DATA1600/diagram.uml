@@ -3,111 +3,58 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="280.25" y="106.0">Validations.Valideringer</node>
-    <node x="274.2083333333333" y="622.0">main.Controller</node>
-    <node x="0.0" y="0.0">avvikshåntering.InvalidTlfnrException</node>
-    <node x="741.0" y="0.0">avvikshåntering.InvalidNameException</node>
-    <node x="377.875" y="300.0">Validations.Sjekk</node>
-    <node x="491.0" y="0.0">avvikshåntering.InvalidEpostException</node>
-    <node x="38.208333333333314" y="765.0">InfoFormats.PersonFormat</node>
-    <node x="250.0" y="0.0">avvikshåntering.InvalidDateException</node>
-    <node x="100.875" y="312.0">Register.Person</node>
-    <node x="51.208333333333314" y="1078.0">InfoFormats.ParsePerson</node>
-    <node x="522.2083333333333" y="797.0">avvikshåntering.InvalidPersonFormatException</node>
+    <node x="210.0" y="448.0">main.Controller</node>
+    <node x="82.5" y="278.0">InfoFormats.PersonFormat</node>
+    <node x="0.0" y="590.0">InfoFormats.ParsePerson</node>
+    <node x="153.34999999999997" y="0.0">Register.Person</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="Validations.Valideringer" target="avvikshåntering.InvalidTlfnrException">
-      <point x="-80.25" y="-72.0" />
-      <point x="307.0" y="86.0" />
-      <point x="172.5" y="86.0" />
-      <point x="57.5" y="28.0" />
-    </edge>
-    <edge source="InfoFormats.ParsePerson" target="InfoFormats.PersonFormat">
-      <point x="0.0" y="-28.0" />
-      <point x="0.0" y="60.0" />
-    </edge>
     <edge source="InfoFormats.PersonFormat" target="Register.Person">
       <point x="0.0" y="-60.0" />
-      <point x="146.20833333333331" y="602.0" />
-      <point x="165.125" y="602.0" />
-      <point x="-64.25" y="114.0" />
+      <point x="190.5" y="258.0" />
+      <point x="230.45" y="258.0" />
+      <point x="-51.39999999999998" y="114.0" />
     </edge>
-    <edge source="InfoFormats.ParsePerson" target="avvikshåntering.InvalidPersonFormatException">
-      <point x="63.333333333333314" y="-28.0" />
-      <point x="209.54166666666663" y="1053.0" />
-      <point x="667.2083333333333" y="1053.0" />
-      <point x="0.0" y="28.0" />
+    <edge source="InfoFormats.ParsePerson" target="InfoFormats.PersonFormat">
+      <point x="47.5" y="-28.0" />
+      <point x="142.5" y="428.0" />
+      <point x="136.5" y="428.0" />
+      <point x="-54.0" y="60.0" />
     </edge>
-    <edge source="Validations.Sjekk" target="avvikshåntering.InvalidEpostException">
-      <point x="36.875" y="-126.0" />
-      <point x="562.25" y="270.0" />
-      <point x="663.5" y="270.0" />
-      <point x="57.5" y="28.0" />
-    </edge>
-    <edge source="Validations.Sjekk" target="Validations.Valideringer">
-      <point x="-36.875" y="-126.0" />
-      <point x="488.5" y="270.0" />
-      <point x="387.25" y="270.0" />
-      <point x="0.0" y="72.0" />
-    </edge>
-    <edge source="main.Controller" target="Validations.Sjekk">
-      <point x="91.20000000000005" y="-203.0" />
-      <point x="479.40833333333336" y="602.0" />
-      <point x="525.375" y="602.0" />
-      <point x="0.0" y="126.0" />
+    <edge source="main.Controller" target="InfoFormats.PersonFormat">
+      <point x="-85.5" y="-170.0" />
+      <point x="238.5" y="428.0" />
+      <point x="244.5" y="428.0" />
+      <point x="54.0" y="60.0" />
     </edge>
     <edge source="InfoFormats.ParsePerson" target="Register.Person">
-      <point x="-63.33333333333337" y="-28.0" />
-      <point x="82.87499999999994" y="1053.0" />
-      <point x="27.708333333333314" y="1053.0" />
-      <point x="27.708333333333314" y="602.0" />
-      <point x="122.29166666666663" y="602.0" />
-      <point x="-107.08333333333337" y="114.0" />
+      <point x="-47.5" y="-28.0" />
+      <point x="47.5" y="428.0" />
+      <point x="62.75" y="428.0" />
+      <point x="62.75" y="258.0" />
+      <point x="179.04999999999995" y="258.0" />
+      <point x="-102.80000000000001" y="114.0" />
     </edge>
     <edge source="main.Controller" target="Register.Person">
-      <point x="0.0" y="-203.0" />
-      <point x="388.2083333333333" y="582.0" />
-      <point x="293.625" y="582.0" />
-      <point x="64.25" y="114.0" />
-    </edge>
-    <edge source="Validations.Sjekk" target="avvikshåntering.InvalidNameException">
-      <point x="110.625" y="-126.0" />
-      <point x="636.0" y="280.0" />
-      <point x="906.75" y="280.0" />
-      <point x="55.25" y="28.0" />
-    </edge>
-    <edge source="Validations.Valideringer" target="avvikshåntering.InvalidEpostException">
-      <point x="26.75" y="-72.0" />
-      <point x="414.0" y="76.0" />
-      <point x="548.5" y="76.0" />
-      <point x="-57.5" y="28.0" />
-    </edge>
-    <edge source="Validations.Sjekk" target="avvikshåntering.InvalidTlfnrException">
-      <point x="-110.625" y="-126.0" />
-      <point x="414.75" y="280.0" />
-      <point x="57.5" y="280.0" />
-      <point x="-57.5" y="28.0" />
-    </edge>
-    <edge source="Validations.Valideringer" target="avvikshåntering.InvalidDateException">
-      <point x="-26.75" y="-72.0" />
-      <point x="0.0" y="28.0" />
-    </edge>
-    <edge source="Validations.Valideringer" target="avvikshåntering.InvalidNameException">
-      <point x="80.25" y="-72.0" />
-      <point x="467.5" y="86.0" />
-      <point x="796.25" y="86.0" />
-      <point x="-55.25" y="28.0" />
+      <point x="28.5" y="-170.0" />
+      <point x="352.5" y="428.0" />
+      <point x="341.60625" y="428.0" />
+      <point x="341.60625" y="248.0" />
+      <point x="333.25" y="248.0" />
+      <point x="51.400000000000034" y="114.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.464471403812825" x="481.0" y="567.0" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="0.6633663366336634" x="219.0" y="394.0" />
+  <SelectedNodes>
+    <node>main.Controller</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
     <Category>Methods</Category>
-    <Category>Inner Classes</Category>
     <Category>Properties</Category>
+    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

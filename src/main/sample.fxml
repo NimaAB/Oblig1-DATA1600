@@ -25,29 +25,29 @@
                     </font>
                 </Label>
                 <Label layoutX="20.0" layoutY="62.0" prefHeight="17.0" prefWidth="68.0" text="Fullnavn:" />
+                <Label layoutX="20.0" layoutY="107.0" prefHeight="17.0" prefWidth="68.0" text="E-post: " />
+                <Label layoutX="20.0" layoutY="141.0" prefHeight="17.0" prefWidth="68.0" text="Tlf.nr.: " />
+                <Label layoutX="20.0" layoutY="211.0" prefHeight="17.0" prefWidth="87.0" text="Fødselsdato:" />
+                <Label layoutX="131.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="År" />
+                <Label layoutX="224.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Måned" />
+                <Label layoutX="313.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Dag" />
                 <TextField fx:id="navnTxt" layoutX="110.0" layoutY="66.0" prefHeight="25.0" prefWidth="149.0" />
-                <Button fx:id="register" layoutX="25.0" layoutY="244.0" mnemonicParsing="false" onAction="#registrer" text="Registrer" />
-                <Button fx:id="visliste" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" onAction="#visListe" text="Vis Liste" />
+                <TextField fx:id="ePosttxt" layoutX="110.0" layoutY="103.0" prefHeight="25.0" prefWidth="230.0" />
+                <TextField fx:id="tlfnrTxt" layoutX="110.0" layoutY="137.0" prefHeight="25.0" prefWidth="230.0" />
                 <TextField fx:id="yearTxt" layoutX="131.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
                 <TextField fx:id="monthTxt" layoutX="224.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
                 <TextField fx:id="dayTxt" layoutX="313.0" layoutY="207.0" prefHeight="25.0" prefWidth="59.0" />
-                <Label layoutX="20.0" layoutY="211.0" prefHeight="17.0" prefWidth="87.0" text="Fødselsdato:" />
-                <Label layoutX="313.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Dag" />
-                <Label layoutX="224.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="Måned" />
-                <Label layoutX="131.0" layoutY="182.0" prefHeight="17.0" prefWidth="68.0" text="År" />
+            <TextField fx:id="pathTxt" layoutX="195.0" layoutY="244.0" prefHeight="25.0" prefWidth="261.0" promptText="Path String" />
+                <Button fx:id="register" layoutX="25.0" layoutY="244.0" mnemonicParsing="false" onAction="#registrer" text="Registrer" />
+                <Button fx:id="visliste" layoutX="116.0" layoutY="244.0" mnemonicParsing="false" onAction="#visListe" text="Vis Liste" />
+                <Button layoutX="23.0" layoutY="283.0" mnemonicParsing="false" onAction="#removePersons" text="CA" />
+            <Button layoutX="71.0" layoutY="283.0" mnemonicParsing="false" onAction="#saving" prefHeight="25.0" prefWidth="158.0" text="Save List in file" />
+            <Button layoutX="241.0" layoutY="283.0" mnemonicParsing="false" onAction="#reader" prefHeight="25.0" prefWidth="158.0" text="read file" />
                 <Label fx:id="eNamelbl" layoutX="310.0" layoutY="66.0" prefHeight="25.0" prefWidth="178.0" />
                 <Label fx:id="InvalidMsgLbl" layoutX="389.0" layoutY="198.0" prefHeight="44.0" prefWidth="236.0" />
                 <Label fx:id="regLbl" alignment="TOP_LEFT" contentDisplay="CENTER" layoutY="308.0" prefHeight="199.0" prefWidth="625.0" />
-                <Button layoutX="23.0" layoutY="283.0" mnemonicParsing="false" onAction="#removePersons" text="CA" />
-                <Label layoutX="20.0" layoutY="107.0" prefHeight="17.0" prefWidth="68.0" text="E-post: " />
-                <Label layoutX="20.0" layoutY="141.0" prefHeight="17.0" prefWidth="68.0" text="Tlf.nr.: " />
-                <TextField fx:id="ePosttxt" layoutX="110.0" layoutY="103.0" prefHeight="25.0" prefWidth="230.0" />
-                <TextField fx:id="tlfnrTxt" layoutX="110.0" layoutY="137.0" prefHeight="25.0" prefWidth="230.0" />
                 <Label fx:id="epostLbl" layoutX="368.0" layoutY="103.0" prefHeight="25.0" prefWidth="178.0" />
                 <Label fx:id="tlfnrLbl" layoutX="372.0" layoutY="137.0" prefHeight="25.0" prefWidth="178.0" />
-            <Button layoutX="71.0" layoutY="283.0" mnemonicParsing="false" onAction="#saving" prefHeight="25.0" prefWidth="158.0" text="Save List in file" />
-            <Button layoutX="241.0" layoutY="283.0" mnemonicParsing="false" onAction="#reader" prefHeight="25.0" prefWidth="158.0" text="read file" />
-            <TextField fx:id="pathTxt" layoutX="195.0" layoutY="244.0" prefHeight="25.0" prefWidth="261.0" promptText="Path String" />
             </children>
         </AnchorPane>
     </children>

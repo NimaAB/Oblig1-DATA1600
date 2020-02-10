@@ -34,15 +34,17 @@ public class Controller {
     private TextField SearchTxt;
 
     @FXML
-    void PrintList(ActionEvent event) {
-        boolean nameValidate = AvikksHåntering.isValidateName(nameTxt.getText());
+    void addToList(ActionEvent event) {
+
         String innYear = yearTxt.getText();
         String innMonth = monthTxt.getText();
         String innDay = dayTxt.getText();
-        boolean numformat = AvikksHåntering.isValidNumFormat(innYear, innMonth, innDay);
         int year = AvikksHåntering.outYear;
         int month = AvikksHåntering.outMonth;
         int day = AvikksHåntering.outDay;
+
+        boolean nameValidate = AvikksHåntering.isValidateName(nameTxt.getText());
+        boolean numformat = AvikksHåntering.isValidNumFormat(innYear, innMonth, innDay);
         boolean dateValidation = AvikksHåntering.isValidDate(year, month, day);
         boolean epostValidate = AvikksHåntering.isValidEpost(ePostTxt.getText());
         boolean tlfnrValidate = AvikksHåntering.isValidTlfnr(tlfNrTxt.getText());
@@ -54,10 +56,9 @@ public class Controller {
             Person enPerson = new Person(nameTxt.getText(), ePostTxt.getText(), tlfNrTxt.getText(), date1);
             personRegister.add(enPerson);
         }
-
     }
     @FXML
-    void addToList(ActionEvent event) {
+    void PrintList(ActionEvent event) {
         StringBuilder ut = new StringBuilder();
         for (Person p : personRegister) {
             ut.append(p.toString());

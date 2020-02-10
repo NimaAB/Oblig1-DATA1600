@@ -33,7 +33,7 @@
                 <TextField fx:id="yearTxt" alignment="CENTER" layoutX="197.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="År" />
                 <TextField fx:id="monthTxt" alignment="CENTER" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" />
                 <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" />
-                <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" text="Error " textFill="RED" />
+                <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" textFill="RED" />
                 <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="68.0" text="register" />
                 <Button layoutX="107.0" layoutY="263.0" mnemonicParsing="false" onAction="#PrintList" prefHeight="25.0" prefWidth="68.0" text="Vis Liste" />
             </children></AnchorPane>

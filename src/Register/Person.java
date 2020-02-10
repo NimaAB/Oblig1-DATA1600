@@ -23,9 +23,11 @@ public class Person {
     public String getTlfnr(){
         return tlfnr;
     }
+
     public LocalDate getFødselsdato(){
         return fødselsdato;
     }
+
     public int beregnAlder(){ //Forberdret litt: fortsatt litt mer plass til forberdring av metoden.
         LocalDate nå = LocalDate.now();
         Month nåMonth = nå.getMonth();

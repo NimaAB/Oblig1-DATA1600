@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     private static ArrayList<Person> personRegister = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
@@ -40,11 +40,6 @@ public class Controller {
     private TableView<?> table;
     @FXML
     private TextField SearchTxt;
-    //for å oppdatere data i radene:
-    @FXML
-    private void radDataEdited(DataModel obj,){
-
-    }
 
     @FXML
     void addToList(ActionEvent event) {
@@ -72,13 +67,18 @@ public class Controller {
     }
     @FXML
     void PrintList(ActionEvent event) {
-        DataCollection data = new DataCollection();
-        data.kobligTilTable(table);
-        String dateS = yearTxt.getText()+"-"+monthTxt.getText()+"-"+dayTxt.getText();
-        DataModel person = new DataModel(nameTxt.getText(),ePostTxt.getText(),tlfNrTxt.getText(),dateS);
-        data.leggTilEllement(person);
+        StringBuilder ut = new StringBuilder();
+        for (Person p : personRegister) {
+            ut.append(p.toString());
+        }
+        nameC.setText(ut.toString());
     }
 
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        DataCollection data = new DataCollection();
+        data.kobligTilTable(table);
+        DataModel person = new DataModel("Glaysa","glaysa@gmail.com","93988118","10.08.1999");
+        data.leggTilEllement(person);
+    }
 }

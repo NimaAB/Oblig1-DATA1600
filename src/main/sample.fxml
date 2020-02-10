@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.TextFieldTableCell?>
 <SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity"
            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
            prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1"
@@ -51,7 +53,7 @@
                         <TableColumn fx:id="nameC" prefWidth="128.66671752929688" text="Name" />
                         <TableColumn fx:id="BirthC" prefWidth="111.99996948242188" text="Birth date" />
                         <TableColumn fx:id="AgeC" prefWidth="53.33331298828125" text="Age" />
-                        <TableColumn fx:id="EpostC" prefWidth="119.3333740234375" text="E-mail" />
+                        <TableColumn fx:id="EpostC" prefWidth="119.3333740234375" text="E-mail"/>
                         <TableColumn fx:id="tlfNrC" prefWidth="130.0" text="Mobile number" />
                     </columns>
                 </TableView>

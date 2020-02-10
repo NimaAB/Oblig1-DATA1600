@@ -65,7 +65,7 @@ public class Controller {
     void reader(ActionEvent event) throws IOException {
         String path = AvikksHåntering.pathInputhandling(pathTxt.getText());
         InvalidMsgLbl.setText(AvikksHåntering.melding);
-        assert path != null;
+        assert path != null; 
         File filePath = new File(path);
         ReaderTxt readerObj = new ReaderTxt();
         personRegister = readerObj.read(filePath);

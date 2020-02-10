@@ -23,7 +23,6 @@ public class DataModel {
 
 
         this.name = new SimpleStringProperty(name);
-
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
         this.birthDate = new SimpleDateFormat(birthDate);

@@ -21,7 +21,7 @@ public class DataModel {
     private SimpleStringProperty name;
     private SimpleStringProperty ePost;
     private SimpleStringProperty tlfNr;
-    private SimpleDateFormat birthDate;
+    private SimpleStringProperty birthDate;
 
 
     public DataModel(String name,String ePost,String tlfNr, String birthDate) {
@@ -30,7 +30,7 @@ public class DataModel {
         this.name = new SimpleStringProperty(name);
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
-        this.birthDate = new SimpleDateFormat(birthDate);
+        this.birthDate = new SimpleStringProperty(birthDate);
     }
     private void setName(String name) throws InvalidNameException{
         /*if(avikkHåntering.isValidateName(name)){
@@ -38,8 +38,8 @@ public class DataModel {
         }*/
         this.name.set(name);
     }
-    public SimpleStringProperty getName(){
-        return this.name;
+    public String getName(){
+        return this.name.getValue();
     }
     private void setePost(String ePost) throws InvalidEpostException{
         /*if(avikkHåntering.isValidEpost(ePost)){
@@ -47,8 +47,8 @@ public class DataModel {
         }*/
         this.ePost.set(ePost);
     }
-    public SimpleStringProperty getePost(){
-        return this.ePost;
+    public String getePost(){
+        return this.ePost.getValue();
     }
     private void setTlfNr(String tlfNr) throws InvalidTlfnrException{
         /*if(avikkHåntering.isValidTlfnr(tlfNr)){
@@ -56,22 +56,20 @@ public class DataModel {
         }*/
         this.tlfNr.set(tlfNr);
     }
-    public SimpleStringProperty getTlfNr(){
-        return this.tlfNr;
+    public String getTlfNr(){
+        return this.tlfNr.getValue();
     }
     // Do the same for the date too.
     // the date string must be splited to an array og string which each element
     // will be converted to integer again.
 
     private void setBirthDate(String date){
-        try{
-            Date birthDate = new SimpleDateFormat("YYYY-MM-DD").parse(date);
-            this.birthDate.format(birthDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+            //Date birthDate = new SimpleDateFormat("YYYY-MM-DD").parse(date);
+            this.birthDate.set(date);
+
     }
-    public SimpleDateFormat getBirthDate() {
-        return this.birthDate;
+    public String getBirthDate() {
+        return this.birthDate.getValue();
     }
 }

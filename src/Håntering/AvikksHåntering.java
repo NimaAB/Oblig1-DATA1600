@@ -9,7 +9,7 @@ import java.time.DateTimeException;
 
 public class AvikksHåntering {
     public static int outYear,outMonth,outDay;
-    public static String melding = "";
+    public static String melding;
 
     public static boolean isValidateName(String name){
         boolean sjekk = true;

@@ -5,6 +5,7 @@ import Håntering.AvikksHåntering;
 import avvik.InvalidEpostException;
 import avvik.InvalidNameException;
 import avvik.InvalidTlfnrException;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 
@@ -23,7 +24,6 @@ public class DataModel {
     private SimpleStringProperty tlfNr;
     private SimpleStringProperty birthDate;
 
-
     public DataModel(String name,String ePost,String tlfNr, String birthDate) {
 
 
@@ -31,6 +31,7 @@ public class DataModel {
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
         this.birthDate = new SimpleStringProperty(birthDate);
+        beregnAlder(birthDate);
     }
     private void setName(String name) throws InvalidNameException{
         /*if(avikkHåntering.isValidateName(name)){
@@ -59,9 +60,6 @@ public class DataModel {
     public String getTlfNr(){
         return this.tlfNr.getValue();
     }
-    // Do the same for the date too.
-    // the date string must be splited to an array og string which each element
-    // will be converted to integer again.
 
     private void setBirthDate(String date){
 
@@ -71,5 +69,31 @@ public class DataModel {
     }
     public String getBirthDate() {
         return this.birthDate.getValue();
+    }
+
+    // en metode som henter dato so en string og gjør dette til en array av strenger
+    // arrayet er splittet med "-".
+    private LocalDate date(String birthDate){
+        String [] dateArray = birthDate.split("-");
+        int year = 0; int month = 0; int day = 0;
+        try{
+            year = Integer.parseInt(dateArray[0]);
+            month = Integer.parseInt(dateArray[1]);
+            day = Integer.parseInt(dateArray[2]);
+        }catch(NumberFormatException e){
+            e.getMessage();
+        }
+        return LocalDate.of(year,month,day);
+    }
+    public int beregnAlder(String birthDate){
+       LocalDate now = LocalDate.now();
+       LocalDate birthDate1 = date(birthDate);
+
+        int age =  now.getYear()- birthDate1.getYear();
+        if(now.getMonth().getValue() < birthDate1.getMonth().getValue() ||
+                now.getMonth().getValue() == birthDate1.getMonth().getValue()){
+            age -=1;
+        }
+        return age;
     }
 }

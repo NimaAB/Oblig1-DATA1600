@@ -1,5 +1,7 @@
 package main;
 
+import Data.DataCollection;
+import Data.DataModel;
 import Håntering.AvikksHåntering;
 import Register.Person;
 
@@ -63,11 +65,10 @@ public class Controller implements Initializable {
     }
     @FXML
     void PrintList(ActionEvent event) {
-        StringBuilder ut = new StringBuilder();
-        for (Person p : personRegister) {
-            ut.append(p.toString());
-        }
-        nameC.setText(ut.toString());
+        DataCollection collection = new DataCollection();
+        String dateS = yearTxt.getText()+"-"+monthTxt.getText()+"-"+dayTxt.getText();
+        DataModel data = new DataModel(nameTxt.getText(),ePostTxt.getText(),tlfNrTxt.getText(),dateS);
+        collection.leggTilEllement(data);
     }
 
     @Override
@@ -76,7 +77,6 @@ public class Controller implements Initializable {
     }
 
     public void CloseApp (){
-
         Platform.exit();
         System.exit(0);
     }

@@ -8,7 +8,12 @@ import avvik.InvalidTlfnrException;
 import javafx.beans.property.SimpleStringProperty;
 
 
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 
 public class DataModel {
@@ -23,7 +28,6 @@ public class DataModel {
 
 
         this.name = new SimpleStringProperty(name);
-
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
         this.birthDate = new SimpleDateFormat(birthDate);
@@ -59,5 +63,15 @@ public class DataModel {
     // the date string must be splited to an array og string which each element
     // will be converted to integer again.
 
-
+    private void setBirthDate(String date){
+        try{
+            Date birthDate = new SimpleDateFormat("YYYY-MM-DD").parse(date);
+            this.birthDate.format(birthDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public SimpleDateFormat getBirthDate() {
+        return this.birthDate;
+    }
 }

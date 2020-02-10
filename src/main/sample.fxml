@@ -38,7 +38,7 @@
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>
-                <TableView layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
+                <TableView fx:id="TableView" layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
                     <columns>
                         <TableColumn fx:id="nameC" prefWidth="128.66671752929688" text="Name" />
                         <TableColumn fx:id="BirthC" prefWidth="111.99996948242188" text="Birth date" />

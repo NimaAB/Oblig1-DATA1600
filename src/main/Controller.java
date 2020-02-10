@@ -1,18 +1,24 @@
 package main;
 
+import Data.DataCollection;
+import Data.DataModel;
 import Håntering.AvikksHåntering;
 import Register.Person;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     private static ArrayList<Person> personRegister = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
@@ -20,6 +26,8 @@ public class Controller {
     private TextField yearTxt, monthTxt, dayTxt;
     @FXML
     private Label ErrorLbl;
+    @FXML
+    private TableView<DataModel> TableView;
     @FXML
     private TableColumn<?, ?> nameC;
     @FXML
@@ -32,7 +40,12 @@ public class Controller {
     private TableColumn<?, ?> tlfNrC;
     @FXML
     private TextField SearchTxt;
+    DataCollection collection = new DataCollection();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        collection.leggTilEllement(DataModel<>);
+    }
     @FXML
     void addToList(ActionEvent event) {
 

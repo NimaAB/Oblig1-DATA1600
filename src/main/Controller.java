@@ -5,14 +5,17 @@ import Register.Person;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     private static ArrayList<Person> personRegister = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
@@ -64,5 +67,10 @@ public class Controller {
             ut.append(p.toString());
         }
         nameC.setText(ut.toString());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
     }
 }

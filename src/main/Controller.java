@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller {
     private static ArrayList<Person> personRegister = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
@@ -26,8 +26,6 @@ public class Controller implements Initializable {
     private TextField yearTxt, monthTxt, dayTxt;
     @FXML
     private Label ErrorLbl;
-    @FXML
-    private TableView<DataModel> TableView;
     @FXML
     private TableColumn<?, ?> nameC;
     @FXML
@@ -39,13 +37,15 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<?, ?> tlfNrC;
     @FXML
+    private TableView<?> table;
+    @FXML
     private TextField SearchTxt;
-    DataCollection collection = new DataCollection();
+    //for å oppdatere data i radene:
+    @FXML
+    private void radDataEdited(DataModel obj,){
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        collection.leggTilEllement(DataModel<>);
     }
+
     @FXML
     void addToList(ActionEvent event) {
 
@@ -72,10 +72,13 @@ public class Controller implements Initializable {
     }
     @FXML
     void PrintList(ActionEvent event) {
-        StringBuilder ut = new StringBuilder();
-        for (Person p : personRegister) {
-            ut.append(p.toString());
-        }
-        nameC.setText(ut.toString());
+        DataCollection data = new DataCollection();
+        data.kobligTilTable(table);
+        String dateS = yearTxt.getText()+"-"+monthTxt.getText()+"-"+dayTxt.getText();
+        DataModel person = new DataModel(nameTxt.getText(),ePostTxt.getText(),tlfNrTxt.getText(),dateS);
+        data.leggTilEllement(person);
     }
+
+
+
 }

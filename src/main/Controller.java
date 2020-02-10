@@ -34,7 +34,7 @@ public class Controller {
     private TextField SearchTxt;
 
     @FXML
-    void PrintList(ActionEvent event) {
+    void addToList(ActionEvent event) {
         boolean nameValidate = AvikksHåntering.isValidateName(nameTxt.getText());
         String innYear = yearTxt.getText();
         String innMonth = monthTxt.getText();
@@ -57,7 +57,7 @@ public class Controller {
 
     }
     @FXML
-    void addToList(ActionEvent event) {
+    void PrintList(ActionEvent event) {
         StringBuilder ut = new StringBuilder();
         for (Person p : personRegister) {
             ut.append(p.toString());

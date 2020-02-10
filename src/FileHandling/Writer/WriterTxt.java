@@ -12,7 +12,7 @@ public class WriterTxt implements WriterInteface {
         FileWriter writerParamTo_fWriter;
         BufferedWriter fileWriter = null;
                 try{
-                    writerParamTo_fWriter = new FileWriter(filePath);
+                    writerParamTo_fWriter = new FileWriter(filePath,true);
                     fileWriter= new BufferedWriter(writerParamTo_fWriter);
                     for(int i=numberOfLines; i> 0;i--){
                         fileWriter.write(objString);

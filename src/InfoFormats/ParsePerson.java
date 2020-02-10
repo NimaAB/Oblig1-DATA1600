@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class ParsePerson {
     // En metode som konverterer hver linje i en text fil til en array av strenger.
     public static Person parsePerson(String str) throws InvalidPersonFormatException{
-        String [] linjeArray= str.split(PersonFormat.DELIMITER);
+        String [] linjeArray = str.split(PersonFormat.DELIMITER);
         if(linjeArray.length != 5){
             throw new InvalidPersonFormatException("Feil bruk av skiletegn.");
         }

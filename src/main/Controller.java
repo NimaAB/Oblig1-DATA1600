@@ -3,6 +3,7 @@ package main;
 import Håntering.AvikksHåntering;
 import Register.Person;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,5 +73,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void CloseApp (){
+
+        Platform.exit();
+        System.exit(0);
     }
 }

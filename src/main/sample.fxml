@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -22,9 +21,14 @@
                             <items>
                                 <MenuItem mnemonicParsing="false" text="Save" />
                                 <MenuItem mnemonicParsing="false" text="Open" />
-                                <MenuItem mnemonicParsing="false" text="Close" />
+                                <MenuItem mnemonicParsing="false" onAction="#CloseApp" text="Close" />
                             </items>
                         </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
                     </menus>
                 </MenuBar>
                 <TextField fx:id="nameTxt" layoutX="16.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Fullnavn" />
@@ -39,37 +43,13 @@
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>
-                <TableView fx:id="table" layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
+                <TableView layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
                     <columns>
-                        <TableColumn fx:id="nameC" prefWidth="128.66671752929688" text="Name">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="name" />
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn fx:id="BirthC" prefWidth="111.99996948242188" text="Birth date" >
-                            <cellValueFactory>
-                                <PropertyValueFactory property="birthDate" />
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn fx:id="AgeC" prefWidth="53.33331298828125" text="Age">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="age" />
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn fx:id="EpostC" prefWidth="119.3333740234375" text="E-mail">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="ePost" />
-                            </cellValueFactory>
-                        </TableColumn>
-
-                        <TableColumn fx:id="tlfNrC" prefWidth="130.0" text="Mobile number">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="tlfNr" />
-                            </cellValueFactory>
-                        </TableColumn>
+                        <TableColumn fx:id="nameC" prefWidth="128.66671752929688" text="Name" />
+                        <TableColumn fx:id="BirthC" prefWidth="111.99996948242188" text="Birth date" />
+                        <TableColumn fx:id="AgeC" prefWidth="53.33331298828125" text="Age" />
+                        <TableColumn fx:id="EpostC" prefWidth="119.3333740234375" text="E-mail" />
+                        <TableColumn fx:id="tlfNrC" prefWidth="130.0" text="Mobile number" />
                     </columns>
                 </TableView>
                 <TextField fx:id="SearchTxt" layoutX="28.0" layoutY="14.0" promptText="Søk" />

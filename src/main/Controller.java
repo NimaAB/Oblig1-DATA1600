@@ -1,7 +1,5 @@
 package main;
 
-import Data.DataCollection;
-import Data.DataModel;
 import Håntering.AvikksHåntering;
 import Register.Person;
 
@@ -10,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -36,8 +33,6 @@ public class Controller implements Initializable {
     private TableColumn<?, ?> EpostC;
     @FXML
     private TableColumn<?, ?> tlfNrC;
-    @FXML
-    private TableView<?> table;
     @FXML
     private TextField SearchTxt;
 
@@ -76,13 +71,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-<<<<<<< HEAD
-        
-=======
-        DataCollection data = new DataCollection();
-        data.kobligTilTable(table);
-        DataModel person = new DataModel("Glaysa","glaysa@gmail.com","93988118","10.08.1999");
-        data.leggTilEllement(person);
->>>>>>> 7fe4919c82aa278e8784e465eaa40f3affbf0d27
+
     }
+
+
+
+    
 }

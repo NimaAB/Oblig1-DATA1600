@@ -58,6 +58,12 @@ public class PersonDataModel {
     public String getBirthDate() {
         return this.birthDate.getValue();
     }
+    public void setAge(int date){
+        this.age.set(date);
+    }
+    public int getAge(){
+        return this.age.getValue();
+    }
     // en metode som henter dato so en string og gjør dette til en array av strenger
     // arrayet er splittet med "-".
     private LocalDate date(String birthDate){

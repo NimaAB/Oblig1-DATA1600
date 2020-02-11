@@ -7,12 +7,10 @@ import javafx.scene.control.TableView;
 public class DataCollection {
     private ObservableList<PersonDataModel> objToTV = FXCollections.observableArrayList();
 
-   public void kobligTilTable(TableView table)
-   {
+   public void kobligTilTable(TableView table){
         table.setItems(objToTV);
-
     }
     public void leggTilEllement(PersonDataModel obj){
-        objToTV.add(obj); 15
+        objToTV.add(obj);
     }
 }

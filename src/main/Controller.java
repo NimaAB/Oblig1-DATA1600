@@ -73,6 +73,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
     }
 
     public void CloseApp (){
@@ -80,4 +81,5 @@ public class Controller implements Initializable {
         Platform.exit();
         System.exit(0);
     }
+
 }

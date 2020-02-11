@@ -70,6 +70,7 @@ public class DataModel {
 
     }
     public String getBirthDate() {
+
         return this.birthDate.getValue();
     }
 }

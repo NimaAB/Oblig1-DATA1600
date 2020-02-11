@@ -64,6 +64,7 @@ public class Controller implements Initializable {
             ErrorLbl.setText(AvikksHåntering.melding);
         }else{
             personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
+            personData.add(personObj);
             ErrorLbl.setText("");
         }
         return personObj;

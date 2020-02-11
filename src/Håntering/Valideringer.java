@@ -2,7 +2,6 @@ package Håntering;
 
 import avvik.*;
 
-import java.nio.file.InvalidPathException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -15,7 +14,7 @@ public class Valideringer {
             throw new InvalidNameException("Feil navn format");
         }
     }
-    public static void dateInputValidering(int year, int month, int day) throws DateTimeException {
+    public static void dateInputValidering(int year, int month, int day) throws InvalidDatoException {
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.of(year, month, day);
         YearMonth yearMonthObj = YearMonth.of(year,month);
@@ -26,7 +25,7 @@ public class Valideringer {
         boolean monthNotExcepted = month >13 || month<1;
 
         if(dateNotExcepted || dayNotExcepted || monthNotExcepted ){
-            throw new InvalidDateException("Ugyeldig dato");
+            throw new InvalidDatoException("Ugyeldig dato");
         }
     }
 

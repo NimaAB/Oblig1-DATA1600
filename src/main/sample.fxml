@@ -20,8 +20,8 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem fx:id="saveFile" mnemonicParsing="false" text="Save" />
-                                <MenuItem fx:id="openFile" mnemonicParsing="false" text="Open" />
+                                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+                                <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openFile" text="Open" />
                                 <MenuItem mnemonicParsing="false" onAction="#CloseApp" text="Close" />
                             </items>
                         </Menu>

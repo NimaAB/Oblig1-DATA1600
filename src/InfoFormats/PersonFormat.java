@@ -1,24 +1,24 @@
 package InfoFormats;
 
-import Register.Person;
+import Data.PersonDataModel;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class PersonFormat {
     public static String DELIMITER =";"; //En skiletegn mellom Strengene i samme linje i filen.
 
-    private static String personFormat(Person enPerson){
-        return enPerson.getName() + DELIMITER  + enPerson.getFødselsdato() + DELIMITER
-                +enPerson.beregnAlder() + DELIMITER + enPerson.getEpost()
-                + DELIMITER + enPerson.getTlfnr();
+    private static String personFormat(PersonDataModel enPerson){
+        return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
+                +enPerson.beregnAlder(enPerson.getBirthDate()) + DELIMITER + enPerson.getEPost()
+                + DELIMITER + enPerson.getTlfNr();
     }
-    public static String folkFormat(List<Person> personer){
+    public static String folkFormat(ArrayList<PersonDataModel> personDataList){
         StringBuilder pFormat = new StringBuilder();
-        for(Person element : personer){
+        for(PersonDataModel element : personDataList){
             pFormat.append(personFormat(element));
             pFormat.append("\n");
         }
         return pFormat.toString();
     }
-
 }

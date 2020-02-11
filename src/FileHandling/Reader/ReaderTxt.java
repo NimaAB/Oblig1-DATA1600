@@ -1,8 +1,8 @@
 package FileHandling.Reader;
 
+import Data.PersonDataModel;
 import FileHandling.ReaderIntefase;
 import InfoFormats.ParsePerson;
-import Register.Person;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 
 public class ReaderTxt implements ReaderIntefase {
-    public ArrayList<Person> read(File path) throws IOException{
-        ArrayList<Person> personList = new ArrayList<>();
+    public ArrayList<PersonDataModel> read(File path) throws IOException{
+        ArrayList<PersonDataModel> personList = new ArrayList<>();
 
         FileReader file = new FileReader(path);
 

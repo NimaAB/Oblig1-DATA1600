@@ -53,6 +53,7 @@ public class PersonDataModel {
     public int getAge(){
         return this.age.getValue();
     }
+
     // en metode som henter dato so en string og gjør dette til en array av strenger
     // arrayet er splittet med "-".
     private LocalDate date(String birthDate){

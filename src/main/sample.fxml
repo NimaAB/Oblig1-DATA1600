@@ -20,8 +20,8 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Save" />
-                                <MenuItem mnemonicParsing="false" text="Open" />
+                                <MenuItem fx:id="saveFile" mnemonicParsing="false" text="Save" />
+                                <MenuItem fx:id="openFile" mnemonicParsing="false" text="Open" />
                                 <MenuItem mnemonicParsing="false" onAction="#CloseApp" text="Close" />
                             </items>
                         </Menu>
@@ -40,7 +40,6 @@
                 <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" />
                 <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" textFill="RED" />
                 <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="68.0" text="register" />
-                <Button layoutX="107.0" layoutY="263.0" mnemonicParsing="false" onAction="#PrintList" prefHeight="25.0" prefWidth="68.0" text="Vis Liste" />
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>

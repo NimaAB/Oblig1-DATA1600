@@ -8,7 +8,11 @@ import java.util.ArrayList;
 public class PersonFormat {
     public static String DELIMITER =";"; //En skiletegn mellom Strengene i samme linje i filen.
 
+    // Metoden analyserer en objekt som ble lagt og legger til delimeter etter hver attribute
+    // til den objekt slike at filen sammenstemmer med regler
+
     private static String personFormat(PersonDataModel enPerson){
+
         return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
                 +enPerson.beregnAlder(enPerson.getBirthDate()) + DELIMITER + enPerson.getEPost()
                 + DELIMITER + enPerson.getTlfNr();

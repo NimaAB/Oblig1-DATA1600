@@ -57,7 +57,7 @@ public class PersonDataModel {
     // en metode som henter dato so en string og gjør dette til en array av strenger
     // arrayet er splittet med "-".
     private LocalDate date(String birthDate){
-        String [] dateArray = birthDate.split("-");
+        String [] dateArray = birthDate.split("");
         int year = 0; int month = 0; int day = 0;
         try{
             year = Integer.parseInt(dateArray[0]);

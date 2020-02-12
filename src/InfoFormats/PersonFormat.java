@@ -10,7 +10,7 @@ public class PersonFormat {
 
     private static String personFormat(PersonDataModel enPerson){
         return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
-                +enPerson.beregnAlder(enPerson.getBirthDate()) + DELIMITER + enPerson.getEPost()
+                +enPerson.getAge() + DELIMITER + enPerson.getEPost()
                 + DELIMITER + enPerson.getTlfNr();
     }
     public static String folkFormat(ArrayList<PersonDataModel> personDataList){

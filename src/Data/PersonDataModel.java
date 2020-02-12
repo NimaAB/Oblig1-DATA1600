@@ -47,8 +47,8 @@ public class PersonDataModel {
     public String getBirthDate() {
         return this.birthDate.getValue();
     }
-    public void setAge(int date){
-        this.age.set(date);
+    public void setAge(int beregnAlder){
+        this.age.set(beregnAlder);
     }
     public int getAge(){
         return this.age.getValue();

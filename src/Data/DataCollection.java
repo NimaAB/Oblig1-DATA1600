@@ -13,7 +13,7 @@ public class DataCollection {
 
     }
     public void leggTilEllement(PersonDataModel obj){
-       objToTV.add(obj); 1;
-       
+       objToTV.add(obj);
+
    }
 }

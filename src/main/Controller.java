@@ -2,6 +2,7 @@ package main;
 
 import Data.DataCollection;
 import Data.PersonDataModel;
+import FileHandling.Reader.ReaderTxt;
 import FileHandling.Writer.WriterTxt;
 import Håntering.AvikksHåntering;
 
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -86,7 +88,18 @@ public class Controller implements Initializable {
         }
     }
     @FXML
-    void openFile(ActionEvent event){
+    void openFile(ActionEvent event) throws IOException {
+        FileChooser files = new FileChooser();
+        files.setTitle("Leser vindu");
+        files.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Tekst filer","*.txt")
+        );
+        File selectedFile = files.showOpenDialog(saveFile.getParentPopup().getScene().getWindow());
+        ReaderTxt readerObj = new ReaderTxt();
+        personData = readerObj.read(selectedFile);
+        for(PersonDataModel p : personData){
+            collection.leggTilEllement(p);
+        }
     }
     @FXML
     void saveFile(ActionEvent event){

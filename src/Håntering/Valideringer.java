@@ -28,7 +28,6 @@ public class Valideringer {
             throw new InvalidDatoException("Ugyeldig dato");
         }
     }
-
     public static void ePostInputValidering(String ePost) throws InvalidEpostException {
         boolean ligner = Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
                 "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]" +

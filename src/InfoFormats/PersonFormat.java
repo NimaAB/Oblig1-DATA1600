@@ -8,17 +8,18 @@ import java.util.ArrayList;
 public class PersonFormat {
     public static String DELIMITER =";"; //En skiletegn mellom Strengene i samme linje i filen.
 
-    // Metoden analyserer en objekt som ble lagt og legger til delimeter etter hver attribute
-    // til den objekt slike at filen sammenstemmer med regler
-
+    //En metode som bestemmer om at hvordan dataene skal skrives i et text fil.
+    //etter hvert attributt har vi lagt til en DELIMITER tegn. (;)
     private static String personFormat(PersonDataModel enPerson){
 
         return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
                 +enPerson.getAge() + DELIMITER + enPerson.getEPost()
                 + DELIMITER + enPerson.getTlfNr();
     }
+    //Metoden tar imot en ArrayList av type PersonDataModel. og den returnerer en String
+    //av ArrayListen.
     public static String folkFormat(ArrayList<PersonDataModel> personDataList){
-        StringBuilder pFormat = new StringBuilder();
+        StringBuilder pFormat = new StringBuilder(); //StringBuilder har metodon append().
         for(PersonDataModel element : personDataList){
             pFormat.append(personFormat(element));
             pFormat.append("\n");

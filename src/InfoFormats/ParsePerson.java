@@ -8,9 +8,11 @@ import avvik.InvalidPersonFormatException;
 public class ParsePerson {
     // En metode som konverterer hver linje i en text fil til en array av strenger.
     // Metoden tar imot en string og splitter opp stringen i fem deler ved hjelp av
-    // string split metode. Og splitt metoden letter etter Delimter tegn(;).
+    // String sin split metode. Og splitt metoden letter etter Delimter tegn(;).
+    // metoden er implementert i WriterTxt klassen.
     public static PersonDataModel parsePerson(String str) throws InvalidPersonFormatException{
-        String [] linjeArray = str.split(PersonFormat.DELIMITER); // en arra
+        //En String array av linje, det indeksene plasseres etter DELIMITER tegnet (;)
+        String [] linjeArray = str.split(PersonFormat.DELIMITER);
         if(linjeArray.length != 5){
             throw new InvalidPersonFormatException("Filen åpnes ikke: Feil bruk av skiletegn -;-.");
         }

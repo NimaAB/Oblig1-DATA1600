@@ -8,7 +8,7 @@ import avvik.InvalidTlfnrException;
 
 
 public class AvikksHåntering {
-    public static int outYear,outMonth,outDay;
+
     public static String melding;
 
     public static boolean isValidateName(String name){
@@ -25,9 +25,9 @@ public class AvikksHåntering {
         boolean sjekk = true;
         int outYear = 0; int outMonth =0; int outDay = 0;
         try{
-            outYear = Integer.parseInt(year); //year
-            outMonth=Integer.parseInt(month);//month
-            outDay=Integer.parseInt(day);//day
+            outYear = Integer.parseInt(year);
+            outMonth=Integer.parseInt(month);
+            outDay=Integer.parseInt(day);
         } catch (NumberFormatException e){
             melding = e.getMessage();
             sjekk = false;
@@ -40,7 +40,6 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-
     public static boolean isValidEpost(String epost){
         boolean sjekk = true;
         try{

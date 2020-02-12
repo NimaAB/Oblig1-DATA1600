@@ -12,7 +12,7 @@ public class ParsePerson {
     public static PersonDataModel parsePerson(String str) throws InvalidPersonFormatException{
         String [] linjeArray = str.split(PersonFormat.DELIMITER); // en arra
         if(linjeArray.length != 5){
-            throw new InvalidPersonFormatException("Feil bruk av skiletegn.");
+            throw new InvalidPersonFormatException("Filen åpnes ikke: Feil bruk av skiletegn -;-.");
         }
         String name = linjeArray[0];
         String dato = linjeArray[1];

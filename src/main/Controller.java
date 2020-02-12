@@ -105,9 +105,7 @@ public class Controller implements Initializable {
         }
         catch (InvalidPersonFormatException b){
             ErrorLbl.setText(b.getMessage());
-
         }
-
     }
     @FXML
     void saveFile(ActionEvent event){

@@ -2,21 +2,28 @@ package main;
 
 import Data.DataCollection;
 import Data.PersonDataModel;
+import FileHandling.Writer.WriterTxt;
 import Håntering.AvikksHåntering;
 
+import InfoFormats.PersonFormat;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     private DataCollection collection = new DataCollection();
+    private ArrayList<PersonDataModel> personData = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
     @FXML
@@ -27,6 +34,10 @@ public class Controller implements Initializable {
     private TableView Table;
     @FXML
     private TextField SearchTxt;
+    @FXML
+    private MenuItem openFile;
+    @FXML
+    private MenuItem saveFile;
 
     private PersonDataModel creatPersonObjToDataModel(){
         String yearStr = yearTxt.getText();
@@ -48,14 +59,15 @@ public class Controller implements Initializable {
         boolean isValidTlfnr = AvikksHåntering.isValidTlfnr(tlfNr);
         boolean allowAddObj= isValifNumFormat && isValidDate
                 && isValidEPost && isValidName && isValidTlfnr;
-        PersonDataModel obj = null;
+        PersonDataModel personObj = null;
         if(!allowAddObj){
             ErrorLbl.setText(AvikksHåntering.melding);
         }else{
-            obj = new PersonDataModel(name,ePost,tlfNr,birthDate);
+            personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
+            personData.add(personObj);
             ErrorLbl.setText("");
         }
-        return obj;
+        return personObj;
     }
     private void resetTxtFields(){
         nameTxt.setText("");
@@ -67,18 +79,28 @@ public class Controller implements Initializable {
     }
     @FXML
     void addObjToTable(ActionEvent event) {
-        PersonDataModel obj = creatPersonObjToDataModel();
-        if(obj !=null) {
-            collection.leggTilEllement(obj);
+        PersonDataModel perObj = creatPersonObjToDataModel();
+        if(perObj != null) {
+            collection.leggTilEllement(perObj);
             resetTxtFields();
         }
     }
     @FXML
-    void PrintList(ActionEvent event) {
-        DataCollection collection = new DataCollection();
-        String dateS = yearTxt.getText()+"-"+monthTxt.getText()+"-"+dayTxt.getText();
-        PersonDataModel data = new PersonDataModel(nameTxt.getText(),ePostTxt.getText(),tlfNrTxt.getText(),dateS);
-        collection.leggTilEllement(data);
+    void openFile(ActionEvent event){
+    }
+    @FXML
+    void saveFile(ActionEvent event){
+        FileChooser files = new FileChooser();
+        files.setTitle("Lagrings vindu");
+        files.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Tekst filer","*.txt")
+        );
+        File selectedFile = files.showSaveDialog(saveFile.getParentPopup().getScene().getWindow());
+        if(selectedFile != null){
+            WriterTxt SavingtestObj = new WriterTxt();
+            String objString = PersonFormat.folkFormat(personData);
+            SavingtestObj.save(objString,selectedFile,1);
+        }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

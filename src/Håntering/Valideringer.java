@@ -2,7 +2,7 @@ package Håntering;
 
 import avvik.*;
 
-import java.time.DateTimeException;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.regex.Pattern;

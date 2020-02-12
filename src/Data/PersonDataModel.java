@@ -1,20 +1,9 @@
 package Data;
 
-import Håntering.Valideringer;
-import Håntering.AvikksHåntering;
-import avvik.InvalidEpostException;
-import avvik.InvalidNameException;
-import avvik.InvalidTlfnrException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 public class PersonDataModel {
@@ -24,8 +13,8 @@ public class PersonDataModel {
     private SimpleStringProperty tlfNr;
     private SimpleStringProperty birthDate;
     private SimpleIntegerProperty  age;
-    public PersonDataModel(String name, String ePost, String tlfNr, String birthDate){
 
+    public PersonDataModel(String name, String ePost, String tlfNr, String birthDate){
         this.name = new SimpleStringProperty(name);
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
@@ -39,10 +28,10 @@ public class PersonDataModel {
     public String getName(){
         return this.name.getValue();
     }
-    private void setePost(String ePost){
+    private void setEPost(String ePost){
         this.ePost.set(ePost);
     }
-    public String getePost(){
+    public String getEPost(){
         return this.ePost.getValue();
     }
 
@@ -58,6 +47,13 @@ public class PersonDataModel {
     public String getBirthDate() {
         return this.birthDate.getValue();
     }
+    public void setAge(int date){
+        this.age.set(date);
+    }
+    public int getAge(){
+        return this.age.getValue();
+    }
+
     // en metode som henter dato so en string og gjør dette til en array av strenger
     // arrayet er splittet med "-".
     private LocalDate date(String birthDate){

@@ -9,12 +9,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity"
-           maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
@@ -22,8 +20,8 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Save" />
-                                <MenuItem mnemonicParsing="false" text="Open" />
+                                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+                                <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#openFile" text="Open" />
                                 <MenuItem mnemonicParsing="false" onAction="#CloseApp" text="Close" />
                             </items>
                         </Menu>
@@ -41,18 +39,37 @@
                 <TextField fx:id="monthTxt" alignment="CENTER" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" />
                 <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" />
                 <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" textFill="RED" />
-                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="68.0" text="register" />
-                <Button layoutX="107.0" layoutY="263.0" mnemonicParsing="false" onAction="#PrintList" prefHeight="25.0" prefWidth="68.0" text="Vis Liste" />
+                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="68.0" text="register" />
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>
-                <TableView layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
+                <TableView fx:id="Table" layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
                     <columns>
-                        <TableColumn fx:id="nameC" prefWidth="128.66671752929688" text="Name" />
-                        <TableColumn fx:id="BirthC" prefWidth="111.99996948242188" text="Birth date" />
-                        <TableColumn fx:id="AgeC" prefWidth="53.33331298828125" text="Age" />
-                        <TableColumn fx:id="EpostC" prefWidth="119.3333740234375" text="E-mail" />
-                        <TableColumn fx:id="tlfNrC" prefWidth="130.0" text="Mobile number" />
+                        <TableColumn prefWidth="128.66671752929688" text="Name">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="name" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="111.99996948242188" text="Birth date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="birthDate" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="53.33331298828125" text="Age">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="age" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="119.3333740234375" text="E-mail">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="ePost" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="130.0" text="Mobile number">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="tlfNr" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                 </TableView>
                 <TextField fx:id="SearchTxt" layoutX="28.0" layoutY="14.0" promptText="Søk" />

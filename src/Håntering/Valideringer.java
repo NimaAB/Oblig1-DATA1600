@@ -3,6 +3,7 @@ package Håntering;
 import avvik.*;
 
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.regex.Pattern;
@@ -20,11 +21,11 @@ public class Valideringer {
         YearMonth yearMonthObj = YearMonth.of(year,month);
         int daysInMonth = yearMonthObj.lengthOfMonth();
 
-        boolean dateNotExcepted =  date.isAfter(now) || year<1900;
+        boolean dateNotExcepted = date.isAfter(now) || year < 1900;
         boolean dayNotExcepted = day > daysInMonth || day < 1;
-        boolean monthNotExcepted = month >12 || month<1;
+        boolean monthNotExcepted = month > 12 || month < 1;
 
-        if(dateNotExcepted || dayNotExcepted || monthNotExcepted ){
+        if (dateNotExcepted || dayNotExcepted || monthNotExcepted) {
             throw new InvalidDatoException("Ugyeldig dato");
         }
     }

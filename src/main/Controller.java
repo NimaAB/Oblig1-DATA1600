@@ -12,11 +12,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +23,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    Alert warning = new Alert(Alert.AlertType.WARNING);
+    Alert error = new Alert(Alert.AlertType.ERROR);
     private DataCollection collection = new DataCollection();
     private ArrayList<PersonDataModel> personData = new ArrayList<>();
     @FXML
@@ -60,11 +60,15 @@ public class Controller implements Initializable {
         boolean allowAddObj= isValifNumFormat && isValidEPost && isValidName && isValidTlfnr;
         PersonDataModel personObj = null;
         if(!allowAddObj){
-            ErrorLbl.setText(AvikksHåntering.melding);
+            //ErrorLbl.setText(AvikksHåntering.melding);
+            error.setTitle("Error: Wrong Input");
+            error.setHeaderText(AvikksHåntering.melding);
+            error.showAndWait();
         }else{
             personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
             personData.add(personObj);
-            ErrorLbl.setText("");
+            //ErrorLbl.setText("");
+
         }
         return personObj;
     }
@@ -90,22 +94,32 @@ public class Controller implements Initializable {
     @FXML
     //Metode for å implementere readeTxt classen sim metode.
     void openFile(ActionEvent event) throws IOException {
+
         FileChooser files = new FileChooser();
         files.setTitle("Leser vindu");
         files.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Tekst filer","*.txt")
         );
-        File selectedFile = files.showOpenDialog(openFile.getParentPopup().getScene().getWindow());
-    //Frem til hit er kode for å åpne en vindu for å den den filen som vi skal lese i tabellen.
-        try { ReaderTxt readerObj = new ReaderTxt();
-            personData = readerObj.read(selectedFile);
-            for(PersonDataModel p : personData){
-                collection.leggTilEllement(p);//leger inn liste elementene i en ObservebelList
-                //Se på metoden selv: ctrl + click
+        Stage stage =(Stage) openFile.getParentPopup().getScene().getWindow();
+        File selectedFile = files.showOpenDialog(stage);
+        if(selectedFile == null){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Du må velge en tekst fil");
+            warning.showAndWait();
+        }else {
+            //Frem til hit er kode for å åpne en vindu for å den den filen som vi skal lese i tabellen.
+            try {
+                ReaderTxt readerObj = new ReaderTxt();
+                personData = readerObj.read(selectedFile);
+                for (PersonDataModel p : personData) {
+                    collection.leggTilEllement(p);//leger inn liste elementene i en ObservebelList
+                    //Se på metoden selv: ctrl + click
+                }
+            } catch (InvalidPersonFormatException e) {
+                error.setTitle("Error: Wrong Input");
+                error.setHeaderText(e.getMessage());
+                error.showAndWait();
             }
-        }
-        catch (InvalidPersonFormatException b){
-            ErrorLbl.setText(b.getMessage());
         }
     }
     //en metode for å skrive til fil. WriterTxt klassen.

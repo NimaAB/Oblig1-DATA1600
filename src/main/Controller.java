@@ -7,6 +7,7 @@ import FileHandling.Writer.WriterTxt;
 import Håntering.AvikksHåntering;
 
 import InfoFormats.PersonFormat;
+import avvik.InvalidPersonFormatException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,11 +96,18 @@ public class Controller implements Initializable {
                 new FileChooser.ExtensionFilter("Tekst filer","*.txt")
         );
         File selectedFile = files.showOpenDialog(saveFile.getParentPopup().getScene().getWindow());
-        ReaderTxt readerObj = new ReaderTxt();
-        personData = readerObj.read(selectedFile);
-        for(PersonDataModel p : personData){
-            collection.leggTilEllement(p);
+
+        try { ReaderTxt readerObj = new ReaderTxt();
+            personData = readerObj.read(selectedFile);
+            for(PersonDataModel p : personData){
+                collection.leggTilEllement(p);
+            }
         }
+        catch (InvalidPersonFormatException b){
+            ErrorLbl.setText(b.getMessage());
+
+        }
+
     }
     @FXML
     void saveFile(ActionEvent event){

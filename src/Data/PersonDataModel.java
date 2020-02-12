@@ -22,26 +22,25 @@ public class PersonDataModel {
         this.age = new SimpleIntegerProperty(beregnAlder(birthDate));
     }
 
-    private void setName(String name){
+    public void setName(String name){
         this.name.set(name);
     }
     public String getName(){
         return this.name.getValue();
     }
-    private void setEPost(String ePost){
+    public void setEPost(String ePost){
         this.ePost.set(ePost);
     }
     public String getEPost(){
         return this.ePost.getValue();
     }
-
-    private void setTlfNr(String tlfNr){
+    public void setTlfNr(String tlfNr){
         this.tlfNr.set(tlfNr);
     }
     public String getTlfNr(){
         return this.tlfNr.getValue();
     }
-    private void setBirthDate(String date){
+    public void setBirthDate(String date){
             this.birthDate.set(date);
     }
     public String getBirthDate() {

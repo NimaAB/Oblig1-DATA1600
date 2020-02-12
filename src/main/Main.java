@@ -13,16 +13,7 @@ public class Main extends Application {
         primaryStage.setTitle("Registreringsskjema");
         primaryStage.setScene(new Scene(root, primaryStage.getMinWidth(), primaryStage.getMinHeight()));
         primaryStage.show();
-
-
-
-
-
     }
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);

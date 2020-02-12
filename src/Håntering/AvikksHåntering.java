@@ -1,11 +1,11 @@
 package Håntering;
 
+import avvik.InvalidDatoException;
 import avvik.InvalidEpostException;
 import avvik.InvalidNameException;
-import avvik.InvalidStiException;
 import avvik.InvalidTlfnrException;
 
-import java.time.DateTimeException;
+
 
 public class AvikksHåntering {
     public static int outYear,outMonth,outDay;
@@ -21,28 +21,26 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static boolean isValidNumFormat(String ... date){
+    public static boolean isValidNumFormatAndDato(String year,String month,String day){
         boolean sjekk = true;
+        int outYear = 0; int outMonth =0; int outDay = 0;
         try{
-            outYear = Integer.parseInt(date[0]); //year
-            outMonth=Integer.parseInt(date[1]);//month
-            outDay=Integer.parseInt(date[2]);//day
+            outYear = Integer.parseInt(year); //year
+            outMonth=Integer.parseInt(month);//month
+            outDay=Integer.parseInt(day);//day
         } catch (NumberFormatException e){
             melding = e.getMessage();
             sjekk = false;
         }
-        return sjekk;
-    }
-    public static boolean isValidDate(int year,int month,int day) {
-        boolean sjekk = true;
         try {
-            Valideringer.dateInputValidering(year,month,day);
-        } catch (DateTimeException e) {
+            Valideringer.dateInputValidering(outYear,outMonth,outDay);
+        } catch (InvalidDatoException e) {
             melding = e.getMessage();
             sjekk = false;
         }
         return sjekk;
     }
+
     public static boolean isValidEpost(String epost){
         boolean sjekk = true;
         try{
@@ -63,13 +61,5 @@ public class AvikksHåntering {
             sjekk = false;
         }
         return sjekk;
-    }
-    public static String pathInputhandling(String path){
-        try{
-            Valideringer.pathInputValidering(path);
-        }catch (InvalidStiException e){
-            melding = e.getMessage();
-        }
-        return path;
     }
 }

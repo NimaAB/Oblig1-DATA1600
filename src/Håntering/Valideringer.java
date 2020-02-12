@@ -22,7 +22,7 @@ public class Valideringer {
 
         boolean dateNotExcepted =  date.isAfter(now) || year<1900;
         boolean dayNotExcepted = day > daysInMonth || day < 1;
-        boolean monthNotExcepted = month >13 || month<1;
+        boolean monthNotExcepted = month >12 || month<1;
 
         if(dateNotExcepted || dayNotExcepted || monthNotExcepted ){
             throw new InvalidDatoException("Ugyeldig dato");
@@ -44,12 +44,5 @@ public class Valideringer {
         if(!patternPlus && !patternZeros && !utenLandsKode){
             throw new InvalidTlfnrException("Ugyldig telefonnummer format!");
         }
-    }
-    public static void pathInputValidering(String path) throws InvalidStiException{
-        boolean patternMatch = Pattern.matches(".*",path);
-        if(!patternMatch){
-            throw new InvalidStiException("Feil Sti format");
-        }
-
     }
 }

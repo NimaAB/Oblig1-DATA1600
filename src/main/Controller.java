@@ -43,25 +43,20 @@ public class Controller implements Initializable {
     private MenuItem saveFile;
 
     private PersonDataModel creatPersonObjToDataModel(){
-        String yearStr = yearTxt.getText();
-        String monthStr = monthTxt.getText();
-        String dayStr = dayTxt.getText();
 
-        int year = AvikksHåntering.outYear;
-        int month = AvikksHåntering.outMonth;
-        int day = AvikksHåntering.outDay;
+        String year = yearTxt.getText();
+        String month = monthTxt.getText();
+        String day = dayTxt.getText();
 
-        boolean isValifNumFormat = AvikksHåntering.isValidNumFormat(yearStr,monthStr,dayStr);
-        boolean isValidDate = AvikksHåntering.isValidDate(year,month,day);
-        String birthDate = yearStr+"-"+monthStr+"-"+dayStr;
+        boolean isValifNumFormat = AvikksHåntering.isValidNumFormatAndDato(year,month,day);
+        String birthDate = year+"-"+month+"-"+day;
         String name = nameTxt.getText();
         boolean isValidName = AvikksHåntering.isValidateName(name);
         String ePost = ePostTxt.getText();
         boolean isValidEPost = AvikksHåntering.isValidEpost(ePost);
         String tlfNr = tlfNrTxt.getText();
         boolean isValidTlfnr = AvikksHåntering.isValidTlfnr(tlfNr);
-        boolean allowAddObj= isValifNumFormat && isValidDate
-                && isValidEPost && isValidName && isValidTlfnr;
+        boolean allowAddObj= isValifNumFormat && isValidEPost && isValidName && isValidTlfnr;
         PersonDataModel personObj = null;
         if(!allowAddObj){
             ErrorLbl.setText(AvikksHåntering.melding);
@@ -95,7 +90,7 @@ public class Controller implements Initializable {
         files.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Tekst filer","*.txt")
         );
-        File selectedFile = files.showOpenDialog(saveFile.getParentPopup().getScene().getWindow());
+        File selectedFile = files.showOpenDialog(openFile.getParentPopup().getScene().getWindow());
 
         try { ReaderTxt readerObj = new ReaderTxt();
             personData = readerObj.read(selectedFile);

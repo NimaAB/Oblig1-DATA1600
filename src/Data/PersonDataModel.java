@@ -1,5 +1,6 @@
 package Data;
 
+import Håntering.Valideringer;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -19,7 +20,7 @@ public class PersonDataModel {
         this.ePost = new SimpleStringProperty(ePost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
         this.birthDate = new SimpleStringProperty(birthDate);
-        this.age = new SimpleIntegerProperty(beregnAlder(birthDate));
+        this.age = new SimpleIntegerProperty(beregnAlder(Valideringer.birthdate));
     }
 
     public void setName(String name){
@@ -68,11 +69,18 @@ public class PersonDataModel {
         }
         return LocalDate.of(year,month,day);
     }
-    public int beregnAlder(String birthDate){
+
+
+
+
+
+
+
+    public static int beregnAlder(LocalDate birthdate){
        LocalDate now = LocalDate.now();
-       LocalDate birthDate1 = date(birthDate);
-        int age =  now.getYear()- birthDate1.getYear();
-        if(now.getMonth().getValue() < birthDate1.getMonth().getValue() ||
+       LocalDate birthDate1 = birthdate;
+       int age =  now.getYear()- birthDate1.getYear();
+       if(now.getMonth().getValue() < birthDate1.getMonth().getValue() ||
                 now.getMonth().getValue() == birthDate1.getMonth().getValue()){
             age -=1;
         }

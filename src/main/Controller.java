@@ -85,11 +85,13 @@ public class Controller implements Initializable {
     @FXML
     //knappen register på GUI legger objekten i tabelview.
     void addObjToTable(ActionEvent event) {
-        PersonDataModel perObj = creatPersonObjToDataModel();
-        if(perObj != null) {
-            collection.leggTilEllement(perObj);
-            resetTxtFields();
-        }
+
+            PersonDataModel perObj = creatPersonObjToDataModel();
+            if(perObj != null) {
+                collection.leggTilEllement(perObj);
+                resetTxtFields();
+            }
+
     }
     @FXML
     //Metode for å implementere readeTxt classen sim metode.

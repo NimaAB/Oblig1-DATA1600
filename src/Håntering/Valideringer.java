@@ -3,17 +3,12 @@ package Håntering;
 import Data.PersonDataModel;
 import avvik.*;
 
-
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.regex.Pattern;
 
 
 public class Valideringer {
-
     public static LocalDate birthdate;
-
 
     public static void nameInputValidering(String navn)  throws InvalidNameException {
         if(!Pattern.matches("[A-ZÅÆØ][a-zåæø]* [A-ZÅÆØ][a-zåæø]*",navn)){
@@ -22,37 +17,17 @@ public class Valideringer {
     }
     public static void dateInputValidering(int year, int month, int day) throws InvalidDatoException {
         LocalDate now = LocalDate.now();
-
-        Boolean birthdateTest= true;
-
         try {
             birthdate = LocalDate.of(year, month, day);
-
         }
         catch(Exception e){
-            throw new InvalidDatoException("Ugyeldig dato");
+            throw new InvalidDatoException("Ugyldig dato: måned eller dag");
         }
-
-
-        YearMonth yearMonthObj = YearMonth.of(year,month);
-
-        int daysInMonth = yearMonthObj.lengthOfMonth();
-
-        boolean dateNotExcepted = birthdate.isAfter(now) || year < 1900;
-        boolean dayNotExcepted = day > daysInMonth || day < 1;
-        boolean monthNotExcepted = month > 12 || month < 1;
-
-        if (dateNotExcepted || dayNotExcepted || monthNotExcepted ) {
-            throw new InvalidDatoException("Ugyeldig dato");
+       if(birthdate.isAfter(now) || year < 1900){
+            throw new InvalidDatoException("Ugyldig dato: År");
         }
         PersonDataModel.beregnAlder(birthdate);
     }
-
-
-
-
-
-
     public static void ePostInputValidering(String ePost) throws InvalidEpostException {
         boolean ligner = Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
                 "+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9]" +

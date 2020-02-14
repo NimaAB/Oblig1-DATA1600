@@ -44,12 +44,16 @@ public class Controller implements Initializable {
     //metoden under evalurer inputene og håndterer dem etter at alt går fint så lager den en objekt av person
     // og returnerer den.
     private PersonDataModel creatPersonObjToDataModel(){
-
         String year = yearTxt.getText();
         String month = monthTxt.getText();
         String day = dayTxt.getText();
 
-        boolean isValifNumFormat = AvikksHåntering.isValidNumFormatAndDato(year,month,day);
+        int [] datoArr = AvikksHåntering.numArr(year,month,day);
+        int yearInt = datoArr[0];
+        int monthInt= datoArr[1];
+        int dayInt= datoArr[2];
+
+        boolean isValifNumFormat = AvikksHåntering.isValidDato(yearInt,monthInt,dayInt);
         String birthDate = year+"-"+month+"-"+day;
         String name = nameTxt.getText();
         boolean isValidName = AvikksHåntering.isValidateName(name);
@@ -60,15 +64,12 @@ public class Controller implements Initializable {
         boolean allowAddObj= isValifNumFormat && isValidEPost && isValidName && isValidTlfnr;
         PersonDataModel personObj = null;
         if(!allowAddObj){
-            //ErrorLbl.setText(AvikksHåntering.melding);
             error.setTitle("Error: Wrong Input");
             error.setHeaderText(AvikksHåntering.melding);
             error.showAndWait();
         }else{
             personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
             personData.add(personObj);
-            //ErrorLbl.setText("");
-
         }
         return personObj;
     }
@@ -84,14 +85,13 @@ public class Controller implements Initializable {
 
     @FXML
     //knappen register på GUI legger objekten i tabelview.
-    void addObjToTable(ActionEvent event) {
+    void addObjToTable(ActionEvent event){
 
-            PersonDataModel perObj = creatPersonObjToDataModel();
-            if(perObj != null) {
-                collection.leggTilEllement(perObj);
-                resetTxtFields();
-            }
-
+        PersonDataModel perObj = creatPersonObjToDataModel();
+        if(perObj != null){
+            collection.leggTilEllement(perObj);
+            resetTxtFields();
+        }
     }
     @FXML
     //Metode for å implementere readeTxt classen sim metode.

@@ -21,25 +21,17 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static boolean isValidNumFormatAndDato(String year,String month,String day){
+    public static boolean isValidDato(int year, int month, int day){
         boolean sjekk = true;
-        int outYear = 0; int outMonth =0; int outDay = 0;
-        try{
-            outYear = Integer.parseInt(year);
-            outMonth=Integer.parseInt(month);
-            outDay=Integer.parseInt(day);
-        } catch (NumberFormatException e){
-            melding = e.getMessage();
-            sjekk = false;
-        }
         try {
-            Valideringer.dateInputValidering(outYear,outMonth,outDay);
+            Valideringer.dateInputValidering(year, month, day);
         } catch (InvalidDatoException e) {
             melding = e.getMessage();
             sjekk = false;
         }
         return sjekk;
     }
+
     public static boolean isValidEpost(String epost){
         boolean sjekk = true;
         try{
@@ -60,5 +52,16 @@ public class AvikksHåntering {
             sjekk = false;
         }
         return sjekk;
+    }
+    public static int [] numArr(String year,String month,String day){
+        int [] numbers = new int [3];
+        try{
+            numbers[0] = Integer.parseInt(year);
+            numbers[1] = Integer.parseInt(month);
+            numbers[2] = Integer.parseInt(day);
+        }catch (NumberFormatException e){
+            melding = e.getMessage();
+        }
+        return numbers;
     }
 }

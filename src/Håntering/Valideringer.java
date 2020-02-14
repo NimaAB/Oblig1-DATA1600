@@ -1,6 +1,5 @@
 package Håntering;
 
-import Data.PersonDataModel;
 import avvik.*;
 
 import java.time.LocalDate;
@@ -8,25 +7,26 @@ import java.util.regex.Pattern;
 
 
 public class Valideringer {
-    public static LocalDate birthdate;
 
     public static void nameInputValidering(String navn)  throws InvalidNameException {
         if(!Pattern.matches("[A-ZÅÆØ][a-zåæø]* [A-ZÅÆØ][a-zåæø]*",navn)){
             throw new InvalidNameException("Feil navn format");
         }
     }
-    public static void dateInputValidering(int year, int month, int day) throws InvalidDatoException {
+    public static LocalDate dateInputValidering(int year, int month, int day)
+            throws InvalidDatoException {
         LocalDate now = LocalDate.now();
+        LocalDate date;
         try {
-            birthdate = LocalDate.of(year, month, day);
+            date = LocalDate.of(year, month, day);
         }
         catch(Exception e){
             throw new InvalidDatoException("Ugyldig dato: måned eller dag");
         }
-       if(birthdate.isAfter(now) || year < 1900){
+       if(date.isAfter(now) || year < 1900){
             throw new InvalidDatoException("Ugyldig dato: År");
         }
-        PersonDataModel.beregnAlder(birthdate);
+       return date;
     }
     public static void ePostInputValidering(String ePost) throws InvalidEpostException {
         boolean ligner = Pattern.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +

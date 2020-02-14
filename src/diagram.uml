@@ -3,51 +3,205 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="210.0" y="448.0">main.Controller</node>
-    <node x="82.5" y="278.0">InfoFormats.PersonFormat</node>
-    <node x="0.0" y="590.0">InfoFormats.ParsePerson</node>
-    <node x="153.34999999999997" y="0.0">Register.Person</node>
+    <node x="0.0" y="0.0">avvik.InvalidTlfnrException</node>
+    <node x="1266.1499999999999" y="1232.0">main.Controller</node>
+    <node x="1271.3705555555557" y="842.0">FileHandling.ReaderIntefase</node>
+    <node x="558.5516666666667" y="810.0">InfoFormats.PersonFormat</node>
+    <node x="612.3516666666667" y="0.0">avvik.InvalidEpostException</node>
+    <node x="926.8641666666667" y="0.0">avvik.InvalidDatoException</node>
+    <node x="1002.3705555555558" y="980.0">InfoFormats.ParsePerson</node>
+    <node x="881.5516666666667" y="842.0">avvik.InvalidPersonFormatException</node>
+    <node x="1852.3705555555557" y="1086.0">FileHandling.Writer.WriterTxt</node>
+    <node x="1133.3016666666667" y="1086.0">FileHandling.Reader.ReaderTxt</node>
+    <node x="1181.8705555555557" y="350.0">Data.PersonDataModel</node>
+    <node x="798.3016666666667" y="126.0">Håntering.Valideringer</node>
+    <node x="357.15166666666676" y="447.0">Håntering.AvikksHåntering</node>
+    <node x="1852.3705555555557" y="980.0">FileHandling.WriterInteface</node>
+    <node x="1547.3705555555557" y="810.0">Data.DataCollection</node>
+    <node x="250.0" y="0.0">avvik.InvalidNameException</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="InfoFormats.PersonFormat" target="Register.Person">
-      <point x="0.0" y="-60.0" />
-      <point x="190.5" y="258.0" />
-      <point x="230.45" y="258.0" />
-      <point x="-51.39999999999998" y="114.0" />
+    <edge source="FileHandling.Reader.ReaderTxt" target="Data.PersonDataModel">
+      <point x="0.0" y="-28.0" />
+      <point x="1260.8705555555557" y="790.0" />
+      <point x="1315.070555555556" y="790.0" />
+      <point x="-14.799999999999955" y="190.0" />
+    </edge>
+    <edge source="Håntering.Valideringer" target="avvik.InvalidTlfnrException">
+      <point x="-88.875" y="-82.0" />
+      <point x="827.9266666666667" y="96.0" />
+      <point x="172.5" y="96.0" />
+      <point x="57.5" y="28.0" />
     </edge>
     <edge source="InfoFormats.ParsePerson" target="InfoFormats.PersonFormat">
-      <point x="47.5" y="-28.0" />
-      <point x="142.5" y="428.0" />
-      <point x="136.5" y="428.0" />
-      <point x="-54.0" y="60.0" />
+      <point x="-93.0" y="-28.0" />
+      <point x="1033.3705555555557" y="955.0" />
+      <point x="785.8016666666667" y="955.0" />
+      <point x="75.75" y="60.0" />
+    </edge>
+    <edge source="Håntering.Valideringer" target="avvik.InvalidEpostException">
+      <point x="29.625" y="-82.0" />
+      <point x="946.4266666666667" y="76.0" />
+      <point x="784.8516666666667" y="76.0" />
+      <point x="57.5" y="28.0" />
     </edge>
     <edge source="main.Controller" target="InfoFormats.PersonFormat">
-      <point x="-85.5" y="-170.0" />
-      <point x="238.5" y="428.0" />
-      <point x="244.5" y="428.0" />
-      <point x="54.0" y="60.0" />
+      <point x="-88.95833333333348" y="-269.0" />
+      <point x="1329.6916666666664" y="1192.0" />
+      <point x="634.3016666666667" y="1192.0" />
+      <point x="-75.75" y="60.0" />
     </edge>
-    <edge source="InfoFormats.ParsePerson" target="Register.Person">
-      <point x="-47.5" y="-28.0" />
-      <point x="47.5" y="428.0" />
-      <point x="62.75" y="428.0" />
-      <point x="62.75" y="258.0" />
-      <point x="179.04999999999995" y="258.0" />
-      <point x="-102.80000000000001" y="114.0" />
+    <edge source="Data.DataCollection" target="Data.PersonDataModel">
+      <point x="-71.0" y="-60.0" />
+      <point x="1618.3705555555557" y="770.0" />
+      <point x="1403.8705555555557" y="770.0" />
+      <point x="74.0" y="190.0" />
     </edge>
-    <edge source="main.Controller" target="Register.Person">
-      <point x="28.5" y="-170.0" />
-      <point x="352.5" y="428.0" />
-      <point x="341.60625" y="428.0" />
-      <point x="341.60625" y="248.0" />
-      <point x="333.25" y="248.0" />
-      <point x="51.400000000000034" y="114.0" />
+    <edge source="Håntering.AvikksHåntering" target="avvik.InvalidDatoException">
+      <point x="89.60000000000002" y="-93.0" />
+      <point x="558.7516666666668" y="330.0" />
+      <point x="1057.4266666666667" y="330.0" />
+      <point x="1057.4266666666667" y="106.0" />
+      <point x="1092.6141666666667" y="106.0" />
+      <point x="55.250000000000114" y="28.0" />
+    </edge>
+    <edge source="main.Controller" target="Data.PersonDataModel">
+      <point x="-114.37500000000011" y="-269.0" />
+      <point x="1304.2749999999999" y="1202.0" />
+      <point x="548.0516666666667" y="1202.0" />
+      <point x="548.0516666666667" y="750.0" />
+      <point x="1196.670555555556" y="750.0" />
+      <point x="-133.20000000000005" y="190.0" />
+    </edge>
+    <edge source="Håntering.AvikksHåntering" target="avvik.InvalidEpostException">
+      <point x="0.0" y="-93.0" />
+      <point x="469.15166666666676" y="330.0" />
+      <point x="432.375" y="330.0" />
+      <point x="432.375" y="106.0" />
+      <point x="669.8516666666667" y="106.0" />
+      <point x="-57.5" y="28.0" />
+    </edge>
+    <edge source="InfoFormats.ParsePerson" target="avvik.InvalidPersonFormatException">
+      <point x="-31.0" y="-28.0" />
+      <point x="1095.3705555555557" y="955.0" />
+      <point x="1099.0516666666667" y="955.0" />
+      <point x="72.5" y="28.0" />
+    </edge>
+    <edge source="InfoFormats.PersonFormat" target="Data.PersonDataModel">
+      <point x="0.0" y="-60.0" />
+      <point x="710.0516666666667" y="760.0" />
+      <point x="1226.2705555555558" y="760.0" />
+      <point x="-103.59999999999991" y="190.0" />
+    </edge>
+    <edge source="main.Controller" target="FileHandling.Writer.WriterTxt">
+      <point x="139.79166666666674" y="-269.0" />
+      <point x="1558.4416666666666" y="1212.0" />
+      <point x="1986.6205555555557" y="1212.0" />
+      <point x="44.75" y="28.0" />
+    </edge>
+    <edge source="Data.PersonDataModel" target="Håntering.Valideringer">
+      <point x="-74.0" y="-190.0" />
+      <point x="1255.8705555555557" y="320.0" />
+      <point x="916.8016666666667" y="320.0" />
+      <point x="0.0" y="82.0" />
+    </edge>
+    <edge source="FileHandling.Reader.ReaderTxt" target="FileHandling.ReaderIntefase">
+      <point x="85.0" y="-28.0" />
+      <point x="1345.8016666666667" y="1061.0" />
+      <point x="1398.8705555555557" y="1061.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="main.Controller" target="Håntering.AvikksHåntering">
+      <point x="-139.79166666666674" y="-269.0" />
+      <point x="1278.8583333333331" y="1212.0" />
+      <point x="469.15166666666676" y="1212.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="Håntering.AvikksHåntering" target="avvik.InvalidTlfnrException">
+      <point x="-89.60000000000002" y="-93.0" />
+      <point x="379.55166666666673" y="330.0" />
+      <point x="57.5" y="330.0" />
+      <point x="-57.5" y="28.0" />
+    </edge>
+    <edge source="InfoFormats.ParsePerson" target="Data.PersonDataModel">
+      <point x="31.0" y="-28.0" />
+      <point x="1157.3705555555557" y="955.0" />
+      <point x="1182.0516666666667" y="955.0" />
+      <point x="1182.0516666666667" y="770.0" />
+      <point x="1255.8705555555557" y="770.0" />
+      <point x="-74.0" y="190.0" />
+    </edge>
+    <edge source="main.Controller" target="Data.DataCollection">
+      <point x="38.125" y="-269.0" />
+      <point x="1456.7749999999999" y="1172.0" />
+      <point x="1671.7749999999999" y="1172.0" />
+      <point x="1671.7749999999999" y="955.0" />
+      <point x="1618.3705555555557" y="955.0" />
+      <point x="-71.0" y="60.0" />
+    </edge>
+    <edge source="Håntering.AvikksHåntering" target="Håntering.Valideringer">
+      <point x="44.80000000000001" y="-93.0" />
+      <point x="513.9516666666668" y="320.0" />
+      <point x="837.8016666666667" y="320.0" />
+      <point x="-79.0" y="82.0" />
+    </edge>
+    <edge source="Håntering.Valideringer" target="avvik.InvalidDatoException">
+      <point x="88.875" y="-82.0" />
+      <point x="1005.6766666666667" y="106.0" />
+      <point x="982.1141666666667" y="106.0" />
+      <point x="-55.25" y="28.0" />
+    </edge>
+    <edge source="FileHandling.Reader.ReaderTxt" target="InfoFormats.ParsePerson">
+      <point x="-85.0" y="-28.0" />
+      <point x="1175.8016666666667" y="1061.0" />
+      <point x="1126.3705555555557" y="1061.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="FileHandling.Writer.WriterTxt" target="FileHandling.WriterInteface">
+      <point x="0.0" y="-28.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="Håntering.Valideringer" target="avvik.InvalidNameException">
+      <point x="-29.625" y="-82.0" />
+      <point x="887.1766666666667" y="86.0" />
+      <point x="415.75" y="86.0" />
+      <point x="55.25" y="28.0" />
+    </edge>
+    <edge source="Håntering.Valideringer" target="Data.PersonDataModel">
+      <point x="79.0" y="82.0" />
+      <point x="995.8016666666667" y="310.0" />
+      <point x="1403.8705555555557" y="310.0" />
+      <point x="74.0" y="-190.0" />
+    </edge>
+    <edge source="Håntering.AvikksHåntering" target="avvik.InvalidNameException">
+      <point x="-44.80000000000007" y="-93.0" />
+      <point x="424.3516666666667" y="320.0" />
+      <point x="305.25" y="320.0" />
+      <point x="-55.25" y="28.0" />
+    </edge>
+    <edge source="main.Controller" target="avvik.InvalidPersonFormatException">
+      <point x="-63.54166666666674" y="-269.0" />
+      <point x="1355.1083333333331" y="1182.0" />
+      <point x="954.0516666666667" y="1182.0" />
+      <point x="-72.5" y="28.0" />
+    </edge>
+    <edge source="main.Controller" target="FileHandling.Reader.ReaderTxt">
+      <point x="-38.125" y="-269.0" />
+      <point x="1380.5249999999999" y="1172.0" />
+      <point x="1197.0516666666667" y="1172.0" />
+      <point x="-63.75" y="28.0" />
+    </edge>
+    <edge source="FileHandling.ReaderIntefase" target="Data.PersonDataModel">
+      <point x="0.0" y="-28.0" />
+      <point x="1398.8705555555557" y="790.0" />
+      <point x="1344.670555555556" y="790.0" />
+      <point x="14.799999999999955" y="190.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6633663366336634" x="219.0" y="394.0" />
+  <settings layout="Hierarchic Group" zoom="0.2633663366336636" x="912.3656716417906" y="344.0522388059701" />
   <SelectedNodes>
-    <node>main.Controller</node>
+    <node>Data.PersonDataModel</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

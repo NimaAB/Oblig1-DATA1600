@@ -56,11 +56,11 @@ public class PersonDataModel {
     }
     public static int beregnAlder(String date){
        LocalDate now = LocalDate.now();
-       String [] birthdate = date.split("-"); //pliter birthdate String til array
+       String [] dateStr = date.split("-"); //spliter date String til array
         //konverterer String arrayet til Intigers:
-        int[] dato = AvikksHåntering.numArr(birthdate[0],birthdate[1],birthdate[2]);
-       LocalDate birthDateObjFrom = Valideringer.dateInputValidering(dato[0],dato[1],dato[2]);
-       int age =  now.getYear()- birthDateObjFrom.getYear();
+        int[] dateInt = AvikksHåntering.numArr(dateStr[0],dateStr[1],dateStr[2]);
+       LocalDate birthDateObjFrom = Valideringer.dateInputValidering(dateInt[0],dateInt[1],dateInt[2]);
+       int age =  now.getYear() - birthDateObjFrom.getYear();
        if(now.getMonth().getValue() < birthDateObjFrom.getMonth().getValue() ||
                 now.getMonth().getValue() == birthDateObjFrom.getMonth().getValue()){
             age -=1;

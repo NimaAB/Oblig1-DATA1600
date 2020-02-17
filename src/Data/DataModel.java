@@ -1,77 +1,39 @@
 package Data;
 
-import Håntering.Valideringer;
-import Håntering.AvikksHåntering;
-import avvik.InvalidEpostException;
-import avvik.InvalidNameException;
-import avvik.InvalidTlfnrException;
 import javafx.beans.property.SimpleStringProperty;
 
-
-import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-
-
 public class DataModel {
-
     private SimpleStringProperty name;
-    private SimpleStringProperty ePost;
+    private SimpleStringProperty epost;
     private SimpleStringProperty tlfNr;
-    private SimpleDateFormat birthDate;
+    private SimpleStringProperty date;
 
 
-    public DataModel(String name,String ePost,String tlfNr, String birthDate) {
-
-
+    public DataModel(String name, String epost, String tlfNr, String date) {
         this.name = new SimpleStringProperty(name);
-        this.ePost = new SimpleStringProperty(ePost);
+        this.epost = new SimpleStringProperty(epost);
         this.tlfNr=new SimpleStringProperty(tlfNr);
-        this.birthDate = new SimpleDateFormat(birthDate);
+        this.date = new SimpleStringProperty(date);
     }
-    private void setName(String name) throws InvalidNameException{
-        /*if(avikkHåntering.isValidateName(name)){
-            throw new InvalidNameException("Feil navn format");
-        }*/
+
+    public void setName(String name) {
         this.name.set(name);
     }
-    public SimpleStringProperty getName(){
-        return this.name;
+
+    public void setEpost(String epost) {
+        this.epost.set(epost);
     }
-    private void setePost(String ePost) throws InvalidEpostException{
-        /*if(avikkHåntering.isValidEpost(ePost)){
-            throw new InvalidEpostException("Feil epost format");
-        }*/
-        this.ePost.set(ePost);
-    }
-    public SimpleStringProperty getePost(){
-        return this.ePost;
-    }
-    private void setTlfNr(String tlfNr) throws InvalidTlfnrException{
-        /*if(avikkHåntering.isValidTlfnr(tlfNr)){
-            throw new InvalidTlfnrException("Feil Telefon nummer format");
-        }*/
+
+    public void setTlfNr(String tlfNr) {
         this.tlfNr.set(tlfNr);
     }
-    public SimpleStringProperty getTlfNr(){
-        return this.tlfNr;
-    }
-    // Do the same for the date too.
-    // the date string must be splited to an array og string which each element
-    // will be converted to integer again.
 
-    private void setBirthDate(String date){
-        try{
-            Date birthDate = new SimpleDateFormat("YYYY-MM-DD").parse(date);
-            this.birthDate.format(birthDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setDate(String date) {
+        this.date.set(date);
     }
-    public SimpleDateFormat getBirthDate() {
-        return this.birthDate;
-    }
+
+    public String getName() { return name.get(); }
+    public String getEpost() { return epost.get(); }
+    public String getTlfNr() { return tlfNr.get(); }
+    public String getDate() { return date.get(); }
 }

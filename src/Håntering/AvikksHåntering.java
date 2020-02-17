@@ -4,7 +4,6 @@ import avvik.InvalidEpostException;
 import avvik.InvalidNameException;
 import avvik.InvalidStiException;
 import avvik.InvalidTlfnrException;
-
 import java.time.DateTimeException;
 
 public class AvikksHåntering {

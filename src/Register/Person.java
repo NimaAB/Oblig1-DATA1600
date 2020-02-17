@@ -43,4 +43,3 @@ public class Person {
         return getName() +";"+ getFødselsdato() +";"+ beregnAlder() +";"+ getTlfnr() +";"+ getEpost() + "\n";
     }
 }
-//TIPS// nowMåned < måned || nowMåned == måned

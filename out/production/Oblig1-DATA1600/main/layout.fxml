@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller = "main.Controller1">
+<SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller = "main.Controller">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
@@ -26,15 +26,15 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-                <TextField fx:id="NameTxt" layoutX="16.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Fullnavn" />
+                <TextField fx:id="nameTxt" layoutX="16.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Fullnavn" />
                 <TextField fx:id="ePostTxt" layoutX="16.0" layoutY="119.0" prefHeight="25.0" prefWidth="239.0" promptText="E-post address" />
                 <TextField fx:id="tlfNrTxt" layoutX="18.0" layoutY="156.0" prefHeight="25.0" prefWidth="239.0" promptText="Telefon nummer" />
                 <TextField fx:id="yearTxt" alignment="CENTER" layoutX="197.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="År" />
                 <TextField fx:id="monthTxt" alignment="CENTER" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" />
                 <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" />
                 <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" text="Error " textFill="RED" />
-                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addToList" prefHeight="25.0" prefWidth="68.0" text="register" />
-                <Button layoutX="107.0" layoutY="263.0" mnemonicParsing="false" onAction="#PrintList" prefHeight="25.0" prefWidth="68.0" text="Vis Liste" />
+                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="68.0" text="Register" />
+                <Button layoutX="107.0" layoutY="263.0" mnemonicParsing="false" onAction="#showList" prefHeight="25.0" prefWidth="68.0" text="Show List" />
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>

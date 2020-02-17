@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -11,12 +12,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <SplitPane dividerPositions="0.3337696335078534" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="258.0">
             <children>
-                <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="271.0">
+                <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="790.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
@@ -32,18 +34,30 @@
                   </Menu>
                     </menus>
                 </MenuBar>
-                <TextField fx:id="nameTxt" layoutX="16.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Fullnavn" />
-                <TextField fx:id="ePostTxt" layoutX="16.0" layoutY="119.0" prefHeight="25.0" prefWidth="239.0" promptText="E-post address" />
-                <TextField fx:id="tlfNrTxt" layoutX="18.0" layoutY="156.0" prefHeight="25.0" prefWidth="239.0" promptText="Telefon nummer" />
-                <TextField fx:id="yearTxt" alignment="CENTER" layoutX="197.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="År" />
-                <TextField fx:id="monthTxt" alignment="CENTER" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" />
-                <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" />
-                <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="17.0" layoutY="350.0" prefHeight="114.0" prefWidth="239.0" textFill="RED" />
-                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="68.0" text="register" />
+                <TextField fx:id="nameTxt" layoutX="16.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Fullnavn" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+                <TextField fx:id="ePostTxt" layoutX="16.0" layoutY="119.0" prefHeight="25.0" prefWidth="239.0" promptText="E-post address" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+                <TextField fx:id="tlfNrTxt" layoutX="18.0" layoutY="156.0" prefHeight="25.0" prefWidth="239.0" promptText="Telefon nummer" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="150.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+                <TextField fx:id="yearTxt" alignment="CENTER" layoutX="201.0" layoutY="221.0" prefHeight="25.0" prefWidth="58.0" promptText="År" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="190.0" />
+                <TextField fx:id="monthTxt" alignment="CENTER" layoutX="111.0" layoutY="221.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" AnchorPane.leftAnchor="111.0" AnchorPane.topAnchor="190.0" />
+                <TextField fx:id="dayTxt" alignment="CENTER" layoutX="20.0" layoutY="196.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0" />
+                <Label fx:id="ErrorLbl" alignment="TOP_LEFT" layoutX="20.0" layoutY="254.0" prefHeight="114.0" prefWidth="239.0" textFill="RED" />
+                <Button layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="239.0" text="Register" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="230.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>
-                <TableView fx:id="Table" layoutY="46.0" prefHeight="435.0" prefWidth="543.0">
+                <TableView fx:id="Table" layoutY="46.0" prefHeight="435.0" prefWidth="543.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                     <columns>
                         <TableColumn prefWidth="128.66671752929688" text="Name">
                             <cellValueFactory>
@@ -72,7 +86,13 @@
                         </TableColumn>
                     </columns>
                 </TableView>
-                <TextField fx:id="SearchTxt" layoutX="28.0" layoutY="14.0" promptText="Søk" />
-            </children></AnchorPane>
+                <TextField fx:id="SearchTxt" layoutX="369.0" layoutY="2.0" promptText="Søk" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding></AnchorPane>
     </items>
 </SplitPane>

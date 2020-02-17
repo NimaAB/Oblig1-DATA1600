@@ -1,14 +1,15 @@
 package Håntering;
 
+import avvik.InvalidDatoException;
 import avvik.InvalidEpostException;
 import avvik.InvalidNameException;
-import avvik.InvalidStiException;
 import avvik.InvalidTlfnrException;
-import java.time.DateTimeException;
+
+
 
 public class AvikksHåntering {
-    public static int outYear,outMonth,outDay;
-    public static String melding = "";
+
+    public static String melding;
 
     public static boolean isValidateName(String name){
         boolean sjekk = true;
@@ -20,28 +21,17 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static boolean isValidNumFormat(String ... date){
-        boolean sjekk = true;
-        try{
-            outYear = Integer.parseInt(date[0]); //year
-            outMonth=Integer.parseInt(date[1]);//month
-            outDay=Integer.parseInt(date[2]);//day
-        } catch (NumberFormatException e){
-            melding = e.getMessage();
-            sjekk = false;
-        }
-        return sjekk;
-    }
-    public static boolean isValidDate(int year,int month,int day) {
+    public static boolean isValidDato(int year, int month, int day){
         boolean sjekk = true;
         try {
-            Valideringer.dateInputValidering(year,month,day);
-        } catch (DateTimeException e) {
+            Valideringer.dateInputValidering(year, month, day);
+        } catch (InvalidDatoException e) {
             melding = e.getMessage();
             sjekk = false;
         }
         return sjekk;
     }
+
     public static boolean isValidEpost(String epost){
         boolean sjekk = true;
         try{
@@ -63,12 +53,15 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static String pathInputhandling(String path){
+    public static int [] numArr(String year,String month,String day){
+        int [] numbers = new int [3];
         try{
-            Valideringer.pathInputValidering(path);
-        }catch (InvalidStiException e){
+            numbers[0] = Integer.parseInt(year);
+            numbers[1] = Integer.parseInt(month);
+            numbers[2] = Integer.parseInt(day);
+        }catch (NumberFormatException e){
             melding = e.getMessage();
         }
-        return path;
+        return numbers;
     }
 }

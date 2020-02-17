@@ -1,20 +1,26 @@
 package InfoFormats;
 
-import Register.Person;
+import Data.PersonDataModel;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class PersonFormat {
     public static String DELIMITER =";"; //En skiletegn mellom Strengene i samme linje i filen.
 
-    private static String personFormat(Person enPerson){
-        return enPerson.getName() + DELIMITER  + enPerson.getFødselsdato() + DELIMITER
-                +enPerson.beregnAlder() + DELIMITER + enPerson.getEpost()
-                + DELIMITER + enPerson.getTlfnr();
+    //En metode som bestemmer om at hvordan dataene skal skrives i et text fil.
+    //etter hvert attributt har vi lagt til en DELIMITER tegn. (;)
+    private static String personFormat(PersonDataModel enPerson){
+
+        return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
+                +enPerson.getAge() + DELIMITER + enPerson.getEPost()
+                + DELIMITER + enPerson.getTlfNr();
     }
-    public static String folkFormat(List<Person> personer){
-        StringBuilder pFormat = new StringBuilder();
-        for(Person element : personer){
+    //Metoden tar imot en ArrayList av type PersonDataModel. og den returnerer en String
+    //av ArrayListen.
+    public static String folkFormat(ArrayList<PersonDataModel> personDataList){
+        StringBuilder pFormat = new StringBuilder(); //StringBuilder har metodon append().
+        for(PersonDataModel element : personDataList){
             pFormat.append(personFormat(element));
             pFormat.append("\n");
         }

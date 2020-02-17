@@ -1,17 +1,32 @@
 package main;
 
+import Data.DataCollection;
+import Data.PersonDataModel;
+import FileHandling.Reader.ReaderTxt;
+import FileHandling.Writer.WriterTxt;
 import Håntering.AvikksHåntering;
-import Register.Person;
+
+import InfoFormats.PersonFormat;
+import avvik.InvalidPersonFormatException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
-import java.time.LocalDate;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Controller {
-
+public class Controller implements Initializable {
+    Alert warning = new Alert(Alert.AlertType.WARNING);
+    Alert error = new Alert(Alert.AlertType.ERROR);
+    private DataCollection collection = new DataCollection();
+    private ArrayList<PersonDataModel> personData = new ArrayList<>();
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
     @FXML
@@ -19,49 +34,120 @@ public class Controller {
     @FXML
     private Label ErrorLbl;
     @FXML
-    private TableColumn<?, ?> nameC;
-    @FXML
-    private TableColumn<?, ?> BirthC;
-    @FXML
-    private TableColumn<?, ?> AgeC;
-    @FXML
-    private TableColumn<?, ?> EpostC;
-    @FXML
-    private TableColumn<?, ?> tlfNrC;
+    private TableView Table;
     @FXML
     private TextField SearchTxt;
+    @FXML
+    private MenuItem openFile;
+    @FXML
+    private MenuItem saveFile;
+    //metoden under evalurer inputene og håndterer dem etter at alt går fint så lager den en objekt av person
+    // og returnerer den.
+    private PersonDataModel creatPersonObjToDataModel(){
+        String year = yearTxt.getText();
+        String month = monthTxt.getText();
+        String day = dayTxt.getText();
 
-    private static ArrayList<Person> personRegister = new ArrayList<>();
+        int [] datoArr = AvikksHåntering.numArr(year,month,day);
+        int yearInt = datoArr[0];
+        int monthInt= datoArr[1];
+        int dayInt= datoArr[2];
+
+        boolean isValifNumFormat = AvikksHåntering.isValidDato(yearInt,monthInt,dayInt);
+        String birthDate = year+"-"+month+"-"+day;
+        String name = nameTxt.getText();
+        boolean isValidName = AvikksHåntering.isValidateName(name);
+        String ePost = ePostTxt.getText();
+        boolean isValidEPost = AvikksHåntering.isValidEpost(ePost);
+        String tlfNr = tlfNrTxt.getText();
+        boolean isValidTlfnr = AvikksHåntering.isValidTlfnr(tlfNr);
+        boolean allowAddObj= isValifNumFormat && isValidEPost && isValidName && isValidTlfnr;
+        PersonDataModel personObj = null;
+        if(!allowAddObj){
+            error.setTitle("Error: Wrong Input");
+            error.setHeaderText(AvikksHåntering.melding);
+            error.showAndWait();
+        }else{
+            personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
+            personData.add(personObj);
+        }
+        return personObj;
+    }
+    //rydder opp tekst feltene på GUI-en.
+    private void resetTxtFields(){
+        nameTxt.setText("");
+        ePostTxt.setText("");
+        tlfNrTxt.setText("");
+        yearTxt.setText("");
+        monthTxt.setText("");
+        dayTxt.setText("");
+    }
 
     @FXML
-    void register(ActionEvent event) {
-        String innYear = yearTxt.getText();
-        String innMonth = monthTxt.getText();
-        String innDay = dayTxt.getText();
+    //knappen register på GUI legger objekten i tabelview.
+    void addObjToTable(ActionEvent event){
 
-        boolean numformat = AvikksHåntering.isValidNumFormat(innYear, innMonth, innDay);
-        int year = AvikksHåntering.outYear;
-        int month = AvikksHåntering.outMonth;
-        int day = AvikksHåntering.outDay;
-
-        boolean nameValidate = AvikksHåntering.isValidateName(nameTxt.getText());
-        boolean dateValidation = AvikksHåntering.isValidDate(year, month, day);
-        boolean epostValidate = AvikksHåntering.isValidEpost(ePostTxt.getText());
-        boolean tlfnrValidate = AvikksHåntering.isValidTlfnr(tlfNrTxt.getText());
-        boolean allowAddObj = nameValidate && epostValidate && tlfnrValidate && numformat && dateValidation;
-        ErrorLbl.setText(AvikksHåntering.melding);
-
-        if (allowAddObj) {
-            LocalDate date1 = LocalDate.of(year, month, day);
-            Person enPerson = new Person(nameTxt.getText(), ePostTxt.getText(), tlfNrTxt.getText(), date1);
-            personRegister.add(enPerson);
-            ErrorLbl.setText("");
+        PersonDataModel perObj = creatPersonObjToDataModel();
+        if(perObj != null){
+            collection.leggTilEllement(perObj);
+            resetTxtFields();
         }
-
     }
     @FXML
-    void showList(ActionEvent event) {
-        StringBuilder ut = new StringBuilder();
-        for (Person p : personRegister) { ut.append(p.toString()); }
+    //Metode for å implementere readeTxt classen sim metode.
+    void openFile(ActionEvent event) throws IOException {
+
+        FileChooser files = new FileChooser();
+        files.setTitle("Leser vindu");
+        files.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Tekst filer","*.txt")
+        );
+        Stage stage =(Stage) openFile.getParentPopup().getScene().getWindow();
+        File selectedFile = files.showOpenDialog(stage);
+        if(selectedFile == null){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Du må velge en tekst fil");
+            warning.showAndWait();
+        }else {
+            //Frem til hit er kode for å åpne en vindu for å den den filen som vi skal lese i tabellen.
+            try {
+                ReaderTxt readerObj = new ReaderTxt();
+                personData = readerObj.read(selectedFile);
+                for (PersonDataModel p : personData) {
+                    collection.leggTilEllement(p);//leger inn liste elementene i en ObservebelList
+                    //Se på metoden selv: ctrl + click
+                }
+            } catch (InvalidPersonFormatException e) {
+                error.setTitle("Error: Wrong Input");
+                error.setHeaderText(e.getMessage());
+                error.showAndWait();
+            }
+        }
+    }
+    //en metode for å skrive til fil. WriterTxt klassen.
+    @FXML
+    void saveFile(ActionEvent event){
+        FileChooser files = new FileChooser();
+        files.setTitle("Lagrings vindu");
+        files.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Tekst filer","*.txt")
+        );
+        File selectedFile = files.showSaveDialog(saveFile.getParentPopup().getScene().getWindow());
+        if(selectedFile != null){
+            WriterTxt SavingtestObj = new WriterTxt();
+            String objString = PersonFormat.folkFormat(personData);
+            SavingtestObj.save(objString,selectedFile,1);
+        }
+    }
+    //kobler tabellen med en ObservebelListe.
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+            collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
+        //ctrl + click
+    }
+    //lukker stagen.
+    public void CloseApp (){
+        Platform.exit();
+        System.exit(0);
     }
 }

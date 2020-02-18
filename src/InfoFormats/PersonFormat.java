@@ -13,7 +13,7 @@ public class PersonFormat {
     private static String personFormat(PersonDataModel enPerson){
 
         return enPerson.getName() + DELIMITER  + enPerson.getBirthDate() + DELIMITER
-                +enPerson.getAge() + DELIMITER + enPerson.getEPost()
+                + enPerson.getAge() + DELIMITER + enPerson.getEmail()
                 + DELIMITER + enPerson.getTlfNr();
     }
     //Metoden tar imot en ArrayList av type PersonDataModel. og den returnerer en String

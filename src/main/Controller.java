@@ -160,7 +160,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
 
-        // gjør det mulig for tabellen og tabellfeltene å bli redigert.
+        // gjør det mulig for tabellen og tabellfeltene til å bli redigert.
         Table.setEditable(true);
         col_name.setCellFactory(TextFieldTableCell.forTableColumn());
         col_date.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -210,6 +210,7 @@ public class Controller implements Initializable {
     @FXML
     private void dateOnEditCell(TableColumn.CellEditEvent<PersonDataModel, String> event) {
         try {
+            // Når datoen blir endret, oppdaterer alderen automatisk
             event.getRowValue().setBirthDate(event.getNewValue());
             int age = PersonDataModel.beregnAlder(event.getNewValue());
             event.getRowValue().setAge(age);

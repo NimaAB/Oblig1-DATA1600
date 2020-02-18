@@ -7,9 +7,7 @@ import avvik.InvalidNameException;
 import avvik.InvalidTlfnrException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-
 import java.time.LocalDate;
-
 
 public class PersonDataModel {
 

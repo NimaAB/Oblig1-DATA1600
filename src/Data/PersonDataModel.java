@@ -2,6 +2,9 @@ package Data;
 
 import Håntering.AvikksHåntering;
 import Håntering.Valideringer;
+import avvik.InvalidEpostException;
+import avvik.InvalidNameException;
+import avvik.InvalidTlfnrException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,49 +14,53 @@ import java.time.LocalDate;
 public class PersonDataModel {
 
     private SimpleStringProperty name;
-    private SimpleStringProperty ePost;
+    private SimpleStringProperty email;
     private SimpleStringProperty tlfNr;
     private SimpleStringProperty birthDate;
     private SimpleIntegerProperty  age;
 
-    public PersonDataModel(String name, String ePost, String tlfNr, String birthDate){
+    public PersonDataModel(String name, String email, String tlfNr, String birthDate){
         this.name = new SimpleStringProperty(name);
-        this.ePost = new SimpleStringProperty(ePost);
+        this.email = new SimpleStringProperty(email);
         this.tlfNr=new SimpleStringProperty(tlfNr);
         this.birthDate = new SimpleStringProperty(birthDate);
         this.age = new SimpleIntegerProperty(beregnAlder(birthDate));
     }
 
-    public void setName(String name){
+    public String getName() { return name.get(); }
+    public String getEmail() { return email.get(); }
+    public String getTlfNr() { return tlfNr.get(); }
+    public String getBirthDate() { return birthDate.get(); }
+    public int getAge() { return age.get(); }
+
+    public void setName(String name) throws InvalidNameException {
+        Valideringer.nameInputValidering(name);
         this.name.set(name);
     }
-    public String getName(){
-        return this.name.getValue();
+    public void setEmail(String ePost) throws InvalidEpostException {
+        Valideringer.ePostInputValidering(ePost);
+        this.email.set(ePost);
     }
-    public void setEPost(String ePost){
-        this.ePost.set(ePost);
-    }
-    public String getEPost(){
-        return this.ePost.getValue();
-    }
-    public void setTlfNr(String tlfNr){
+
+    public void setTlfNr(String tlfNr) throws InvalidTlfnrException {
+        Valideringer.tlfnrInputValidering(tlfNr);
         this.tlfNr.set(tlfNr);
     }
-    public String getTlfNr(){
-        return this.tlfNr.getValue();
+
+    public void setBirthDate(String birthDate) {
+        String[] vals = birthDate.split("-");
+        int day = Integer.parseInt(vals[0]);
+        int month = Integer.parseInt(vals[1]);
+        int year = Integer.parseInt(vals[2]);
+        Valideringer.dateInputValidering(day, month, year);
+        this.birthDate.set(birthDate);
     }
-    public void setBirthDate(String date){
-            this.birthDate.set(date);
+
+    public void setAge(int age) {
+        beregnAlder(birthDate.getValue());
+        this.age.set(age);
     }
-    public String getBirthDate() {
-        return this.birthDate.getValue();
-    }
-    public void setAge(int beregnAlder){
-        this.age.set(beregnAlder);
-    }
-    public int getAge(){
-        return this.age.getValue();
-    }
+
     public static int beregnAlder(String date){
        LocalDate now = LocalDate.now();
        String [] dateStr = date.split("-"); //spliter date String til array

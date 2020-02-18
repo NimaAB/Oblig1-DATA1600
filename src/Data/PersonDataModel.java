@@ -60,12 +60,17 @@ public class PersonDataModel {
 
     public static int beregnAlder(String date){
        LocalDate now = LocalDate.now();
-       String [] dateStr = date.split("-"); //spliter date String til array
         //konverterer String arrayet til Intigers:
-        int[] dateInt = AvikksHåntering.numArr(dateStr[0],dateStr[1],dateStr[2]);
-       LocalDate birthDateObjFrom = Valideringer.dateInputValidering(dateInt[0],dateInt[1],dateInt[2]);
-       int age =  now.getYear() - birthDateObjFrom.getYear();
-       if(now.getMonth().getValue() < birthDateObjFrom.getMonth().getValue() ||
+        int[] dateInt = new int[3];
+        try{
+            dateInt=AvviksHåntering.numArr(date);
+        } catch (InvalidPersonFormatException e){
+            AvviksHåntering.melding = e.getMessage();
+        }
+        LocalDate birthDateObjFrom = Valideringer.dateInputValidering(dateInt[0],
+                dateInt[1],dateInt[2]);
+        int age =  now.getYear() - birthDateObjFrom.getYear();
+        if(now.getMonth().getValue() < birthDateObjFrom.getMonth().getValue() ||
                 now.getMonth().getValue() == birthDateObjFrom.getMonth().getValue()){
             age -=1;
         }

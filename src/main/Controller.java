@@ -4,8 +4,9 @@ import Data.DataCollection;
 import Data.PersonDataModel;
 import FileHandling.Reader.ReaderTxt;
 import FileHandling.Writer.WriterTxt;
-import Håntering.AvikksHåntering;
+import Håntering.AvviksHåntering;
 
+import Håntering.TVInputHåntering;
 import InfoFormats.PersonFormat;
 import avvik.InvalidPersonFormatException;
 import javafx.application.Platform;
@@ -13,8 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +27,15 @@ public class Controller implements Initializable {
     Alert warning = new Alert(Alert.AlertType.WARNING);
     Alert error = new Alert(Alert.AlertType.ERROR);
     private DataCollection collection = new DataCollection();
+
     private ArrayList<PersonDataModel> personData = new ArrayList<>();
+
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
     @FXML
     private TextField yearTxt, monthTxt, dayTxt;
     @FXML
-    private Label ErrorLbl;
+    private TableColumn <PersonDataModel,String> nameCol,birthCol,epostCol,tlfNrCol;
     @FXML
     private TableView Table;
     @FXML
@@ -47,25 +50,21 @@ public class Controller implements Initializable {
         String year = yearTxt.getText();
         String month = monthTxt.getText();
         String day = dayTxt.getText();
-
-        int [] datoArr = AvikksHåntering.numArr(year,month,day);
-        int yearInt = datoArr[0];
-        int monthInt= datoArr[1];
-        int dayInt= datoArr[2];
-
-        boolean isValifNumFormat = AvikksHåntering.isValidDato(yearInt,monthInt,dayInt);
         String birthDate = year+"-"+month+"-"+day;
+
+        boolean isValifNumFormat = AvviksHåntering.isValidDate(birthDate);
         String name = nameTxt.getText();
-        boolean isValidName = AvikksHåntering.isValidateName(name);
+        boolean isValidName = AvviksHåntering.isValidateName(name);
         String ePost = ePostTxt.getText();
-        boolean isValidEPost = AvikksHåntering.isValidEpost(ePost);
+        boolean isValidEPost = AvviksHåntering.isValidEpost(ePost);
         String tlfNr = tlfNrTxt.getText();
-        boolean isValidTlfnr = AvikksHåntering.isValidTlfnr(tlfNr);
+        boolean isValidTlfnr = AvviksHåntering.isValidTlfnr(tlfNr);
         boolean allowAddObj= isValifNumFormat && isValidEPost && isValidName && isValidTlfnr;
+
         PersonDataModel personObj = null;
         if(!allowAddObj){
             error.setTitle("Error: Wrong Input");
-            error.setHeaderText(AvikksHåntering.melding);
+            error.setHeaderText(AvviksHåntering.melding);
             error.showAndWait();
         }else{
             personObj = new PersonDataModel(name,ePost,tlfNr,birthDate);
@@ -102,8 +101,7 @@ public class Controller implements Initializable {
         files.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Tekst filer","*.txt")
         );
-        Stage stage =(Stage) openFile.getParentPopup().getScene().getWindow();
-        File selectedFile = files.showOpenDialog(stage);
+        File selectedFile = files.showOpenDialog(openFile.getParentPopup().getScene().getWindow());
         if(selectedFile == null){
             warning.setTitle("Warning");
             warning.setHeaderText("Du må velge en tekst fil");
@@ -142,12 +140,57 @@ public class Controller implements Initializable {
     //kobler tabellen med en ObservebelListe.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
+        collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
         //ctrl + click
+
+        //Gjør mulig å skrive i feltene til TabelView:
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        birthCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        epostCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        tlfNrCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        Table.setEditable(true);
+
     }
     //lukker stagen.
     public void CloseApp (){
         Platform.exit();
         System.exit(0);
+    }
+    private TVInputHåntering enObj = new TVInputHåntering();
+    @FXML
+    private void nameCEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
+        event.getRowValue().setName(event.getNewValue());
+        if(!enObj.nameCExceptable(Table,nameCol)){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Feil navn format (Ole Olsen)");
+            warning.showAndWait();
+        }
+    }
+    @FXML
+    private void birthCEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
+        if(!enObj.birthdateCExceptable(Table,birthCol)){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Feil dato format YYYY-MM-DD");
+            warning.showAndWait();
+        }
+        event.getRowValue().setBirthDate(event.getNewValue());
+    }
+    @FXML
+    private void ePostEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
+        if(!enObj.epostCExceptable(Table,epostCol)){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Feil Epost format");
+            warning.showAndWait();
+        }
+        event.getRowValue().setEPost(event.getNewValue());
+    }
+    @FXML
+    private void tlfNrEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
+        if(!enObj.tlfNrCExeptable(Table,tlfNrCol)){
+            warning.setTitle("Warning");
+            warning.setHeaderText("Feil telefonnummer format");
+            warning.showAndWait();
+        }
+        event.getRowValue().setTlfNr(event.getNewValue());
     }
 }

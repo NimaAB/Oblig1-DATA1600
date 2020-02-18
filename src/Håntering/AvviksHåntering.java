@@ -1,13 +1,9 @@
 package Håntering;
 
-import avvik.InvalidDatoException;
-import avvik.InvalidEpostException;
-import avvik.InvalidNameException;
-import avvik.InvalidTlfnrException;
+import avvik.*;
 
 
-
-public class AvikksHåntering {
+public class AvviksHåntering {
 
     public static String melding;
 
@@ -21,11 +17,13 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static boolean isValidDato(int year, int month, int day){
+    public static boolean isValidDate(String birthDate){
         boolean sjekk = true;
+        int[]dateArr;
         try {
-            Valideringer.dateInputValidering(year, month, day);
-        } catch (InvalidDatoException e) {
+            dateArr = AvviksHåntering.numArr(birthDate);
+            Valideringer.dateInputValidering(dateArr[0],dateArr[1],dateArr[2]);
+        } catch (InvalidDatoException | NumberFormatException | InvalidPersonFormatException e) {
             melding = e.getMessage();
             sjekk = false;
         }
@@ -53,12 +51,16 @@ public class AvikksHåntering {
         }
         return sjekk;
     }
-    public static int [] numArr(String year,String month,String day){
+    public static int [] numArr(String birthDate) throws NumberFormatException,InvalidPersonFormatException{
+        String [] dateStr = birthDate.split("-");
+        if(dateStr.length!=3){
+            throw new InvalidPersonFormatException("Feil Format i fødselsdato YYYY-MM-DD");
+        }
         int [] numbers = new int [3];
         try{
-            numbers[0] = Integer.parseInt(year);
-            numbers[1] = Integer.parseInt(month);
-            numbers[2] = Integer.parseInt(day);
+            numbers[0] = Integer.parseInt(dateStr[0]);
+            numbers[1] = Integer.parseInt(dateStr[1]);
+            numbers[2] = Integer.parseInt(dateStr[2]);
         }catch (NumberFormatException e){
             melding = e.getMessage();
         }

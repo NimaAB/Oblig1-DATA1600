@@ -1,7 +1,8 @@
 package Data;
 
-import Håntering.AvikksHåntering;
+import Håntering.AvviksHåntering;
 import Håntering.Valideringer;
+import avvik.InvalidPersonFormatException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -27,9 +28,11 @@ public class PersonDataModel {
     public void setName(String name){
         this.name.set(name);
     }
+
     public String getName(){
         return this.name.getValue();
     }
+
     public void setEPost(String ePost){
         this.ePost.set(ePost);
     }
@@ -54,6 +57,7 @@ public class PersonDataModel {
     public int getAge(){
         return this.age.getValue();
     }
+
     public static int beregnAlder(String date){
        LocalDate now = LocalDate.now();
        String [] dateStr = date.split("-"); //spliter date String til array

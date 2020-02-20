@@ -10,6 +10,8 @@ import Håntering.TVInputHåntering;
 import InfoFormats.PersonFormat;
 import avvik.InvalidPersonFormatException;
 import javafx.application.Platform;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +31,7 @@ public class Controller implements Initializable {
     private DataCollection collection = new DataCollection();
 
     private ArrayList<PersonDataModel> personData = new ArrayList<>();
+    private PersonDataModel perObj;
 
     @FXML
     private TextField nameTxt, ePostTxt, tlfNrTxt;
@@ -37,7 +40,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn <PersonDataModel,String> nameCol,birthCol,epostCol,tlfNrCol;
     @FXML
-    private TableView Table;
+    private TableView<PersonDataModel> Table;
     @FXML
     private TextField SearchTxt;
     @FXML
@@ -86,7 +89,7 @@ public class Controller implements Initializable {
     //knappen register på GUI legger objekten i tabelview.
     void addObjToTable(ActionEvent event){
 
-        PersonDataModel perObj = creatPersonObjToDataModel();
+        perObj = creatPersonObjToDataModel();
         if(perObj != null){
             collection.leggTilEllement(perObj);
             resetTxtFields();
@@ -149,6 +152,26 @@ public class Controller implements Initializable {
         epostCol.setCellFactory(TextFieldTableCell.forTableColumn());
         tlfNrCol.setCellFactory(TextFieldTableCell.forTableColumn());
         Table.setEditable(true);
+
+        //filtrering:
+        FilteredList<PersonDataModel> filteredList = new FilteredList<>(collection.objToTV,b -> true);
+        SearchTxt.textProperty().addListener((observable,oldValue,newValue)->{
+         filteredList.setPredicate(perObj->{
+            if(newValue == null || newValue.isEmpty()){
+                return true;
+            }
+            String lowerCaseF = newValue.toLowerCase();
+            if(perObj.getName().toLowerCase().contains(lowerCaseF)){
+                return true;
+            }else if(perObj.getEPost().contains(lowerCaseF)){
+                return true;
+            }else return false;
+         });
+        });
+        SortedList<PersonDataModel> sortertData = new SortedList<>(filteredList);
+        sortertData.comparatorProperty().bind(Table.comparatorProperty());
+        Table.setItems(sortertData);
+
 
     }
     //lukker stagen.

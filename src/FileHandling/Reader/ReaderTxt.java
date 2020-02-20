@@ -25,7 +25,6 @@ public class ReaderTxt implements ReaderIntefase {
             String line;
             while((line = readerFile.readLine())!=null){ //her sjekkes om linjen i text filen er ikke tom
                 personList.add(ParsePerson.parsePerson(line));
-
                 //så lenge er det en linje i filen da skal den leses
                 //og skal lages en PersonDataModel baster på de dataene og bli lagt til Listen.
                 //(ctrl+ click) på (parsePerson(line)) metoden for ålese om den.

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public interface ReaderIntefase {
-    ArrayList<PersonDataModel> read(File path) throws IOException, ClassNotFoundException;
+
+public interface WriterInterface {
+     void save(ArrayList<PersonDataModel> objList, File filePath) throws IOException;
 }

@@ -1,5 +1,7 @@
 package Håntering;
-
+/**
+ * TableView Input Håntering
+ * */
 public class TVInputHåntering {
     public boolean nameCExceptable(String newValue){
         if(newValue.isEmpty()){ return false; }

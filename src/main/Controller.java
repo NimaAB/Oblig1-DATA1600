@@ -159,38 +159,51 @@ public class Controller implements Initializable {
     private TVInputHåntering enObj = new TVInputHåntering();
     @FXML
     private void nameCEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
-        event.getRowValue().setName(event.getNewValue());
-        if(!enObj.nameCExceptable(Table,nameCol)){
+        if(!enObj.nameCExceptable(event.getNewValue())){
             warning.setTitle("Warning");
             warning.setHeaderText("Feil navn format (Ole Olsen)");
             warning.showAndWait();
+            Table.refresh();
+        } else {
+            event.getRowValue().setName(event.getNewValue());
         }
+
     }
     @FXML
     private void birthCEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
-        if(!enObj.birthdateCExceptable(Table,birthCol)){
+        if(!enObj.birthdateCExceptable(event.getNewValue())){
             warning.setTitle("Warning");
             warning.setHeaderText("Feil dato format YYYY-MM-DD");
             warning.showAndWait();
+            Table.refresh();
+        } else {
+            event.getRowValue().setBirthDate(event.getNewValue());
+            int alder = PersonDataModel.beregnAlder(event.getNewValue());
+            event.getRowValue().setAge(alder);
         }
-        event.getRowValue().setBirthDate(event.getNewValue());
     }
     @FXML
     private void ePostEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
-        if(!enObj.epostCExceptable(Table,epostCol)){
+        if(!enObj.epostCExceptable(event.getNewValue())){
             warning.setTitle("Warning");
             warning.setHeaderText("Feil Epost format");
             warning.showAndWait();
+            Table.refresh();
+        } else {
+            event.getRowValue().setEPost(event.getNewValue());
         }
-        event.getRowValue().setEPost(event.getNewValue());
+
     }
     @FXML
     private void tlfNrEdited(TableColumn.CellEditEvent<PersonDataModel, String> event){
-        if(!enObj.tlfNrCExeptable(Table,tlfNrCol)){
+        if(!enObj.tlfNrCExeptable(event.getNewValue())){
             warning.setTitle("Warning");
             warning.setHeaderText("Feil telefonnummer format");
             warning.showAndWait();
+            Table.refresh();
+        } else {
+            event.getRowValue().setTlfNr(event.getNewValue());
         }
-        event.getRowValue().setTlfNr(event.getNewValue());
+
     }
 }

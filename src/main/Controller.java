@@ -180,6 +180,7 @@ public class Controller implements Initializable {
             event.getRowValue().setBirthDate(event.getNewValue());
             int alder = PersonDataModel.beregnAlder(event.getNewValue());
             event.getRowValue().setAge(alder);
+            Table.refresh();
         }
     }
     @FXML

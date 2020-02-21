@@ -94,10 +94,7 @@ public class Controller implements Initializable {
                     return true;
                 }else if(perObj.getBirthDate().contains(searchtxtfield)){
                     return true;
-                }else if(perObj.getTlfNr().contains(searchtxtfield)){
-                    return true;
-                }
-                else return false;
+                }else return perObj.getTlfNr().contains(searchtxtfield);
             });
         });
         SortedList<PersonDataModel> sortertData = new SortedList<>(filteredList);
@@ -180,8 +177,8 @@ public class Controller implements Initializable {
                         personData = readerObjTxt.read(selectedFile);
                     }
                     catch (InvalidPersonFormatException e){
-                        warning.setHeaderText("Warnig");
-                        warning.setTitle(e.getMessage());
+                        warning.setTitle("Warnig");
+                        warning.setHeaderText(e.getMessage());
                         warning.showAndWait();
                     }
                     break;
@@ -190,14 +187,14 @@ public class Controller implements Initializable {
                         ReaderJObj readerObjJObj = new ReaderJObj();
                         personData = readerObjJObj.read(selectedFile);
                     }catch (InvalidPersonFormatException e){
-                        warning.setHeaderText("Warning");
-                        warning.setTitle(e.getMessage());
+                        warning.setTitle("Warning");
+                        warning.setHeaderText(e.getMessage());
                         warning.showAndWait();
                     }
                     break;
                 default:
-                        warning.setHeaderText("Warning");
-                        warning.setTitle("ingen riktige filer har blitt valgt.");
+                        warning.setTitle("Warning");
+                        warning.setHeaderText("ingen riktige filer har blitt valgt.");
                         warning.showAndWait();
                     break;
             }
@@ -230,8 +227,8 @@ public class Controller implements Initializable {
                     savingObjToJObj.save(personData,selectedFile);
                     break;
                 default:
-                    warning.setHeaderText("Warning");
-                    warning.setTitle("ingen filer er valgt");
+                    warning.setTitle("Warning");
+                    warning.setHeaderText("ingen filer er valgt");
                     warning.showAndWait();
                     break;
             }

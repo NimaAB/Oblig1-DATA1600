@@ -58,8 +58,7 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
-        //ctrl + click
+
 
         //Gjør mulig å skrive i feltene til TabelView:
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -100,6 +99,8 @@ public class Controller implements Initializable {
         SortedList<PersonDataModel> sortertData = new SortedList<>(filteredList);
         sortertData.comparatorProperty().bind(Table.comparatorProperty());
         Table.setItems(sortertData);
+        //collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
+        //ctrl + click
     }
     /**metoden under evalurer inputene og håndterer dem etter at alt går fint så lager den en objekt av person
      *  og returnerer den.

@@ -203,7 +203,6 @@ public class Controller implements Initializable {
             }
             for (PersonDataModel p : personData){
                 collection.leggTilEllement(p);
-                System.out.println(p.toString());
             }
         }
     }

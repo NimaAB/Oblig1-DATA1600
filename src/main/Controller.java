@@ -59,7 +59,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
         //Gjør mulig å skrive i feltene til TabelView:
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         birthCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -67,40 +66,9 @@ public class Controller implements Initializable {
         tlfNrCol.setCellFactory(TextFieldTableCell.forTableColumn());
         Table.setEditable(true);
 
-        //filtrering:
-        FilteredList<PersonDataModel> filteredList = new FilteredList<>(collection.objToTV,b -> true);
-        SearchTxt.textProperty().addListener((observable,oldValue,newValue)->{
-            filteredList.setPredicate(perObj->{
-                if(newValue == null || newValue.isEmpty()){
-                    return true;
-                }
-                String searchtxtfield = newValue;
-                int age = 0;
-                if(Pattern.matches("[0-9]*",searchtxtfield)) {
-
-                    try {
-                        age = Integer.parseInt(searchtxtfield);
-                    } catch (NumberFormatException e) {
-                        System.err.println(e.getMessage());
-                    }
-                }
-                String lowerCaseF = newValue.toLowerCase();
-                if(perObj.getName().toLowerCase().contains(lowerCaseF)){
-                    return true;
-                }else if(perObj.getEPost().contains(lowerCaseF)){
-                    return true;
-                }else if (perObj.getAge() == age){
-                    return true;
-                }else if(perObj.getBirthDate().contains(searchtxtfield)){
-                    return true;
-                }else return perObj.getTlfNr().contains(searchtxtfield);
-            });
-        });
-        SortedList<PersonDataModel> sortertData = new SortedList<>(filteredList);
-        sortertData.comparatorProperty().bind(Table.comparatorProperty());
-        Table.setItems(sortertData);
-        //collection.kobligTilTable(Table);//kobler tabellen med en ObservebelListe.
-        //ctrl + click
+        //filtrering og kobling til TableView:
+        collection.kobligTilTable(Table,SearchTxt);
+        //ctrl + click på metoden.
     }
     /**metoden under evalurer inputene og håndterer dem etter at alt går fint så lager den en objekt av person
      *  og returnerer den.
@@ -164,49 +132,42 @@ public class Controller implements Initializable {
         );
         File selectedFile = files.showOpenDialog(openFile.getParentPopup().getScene().getWindow());
         //Frem til hit er kode for å åpne en vindu for å den den filen som vi skal lese i tabellen.
-        if(selectedFile == null){
-            warning.setTitle("Warning");
-            warning.setHeaderText("Ingen filer er valgt");
-            warning.showAndWait();
-        }else {
+        if(selectedFile != null){
             FileExtentionFilter extention = new FileExtentionFilter();
             String extentionFilter = extention.getExtention(selectedFile);
-            switch (extentionFilter){
+            switch (extentionFilter) {
                 case "txt":
                     try {
                         ReaderTxt readerObjTxt = new ReaderTxt();
                         personData = readerObjTxt.read(selectedFile);
-                    }
-                    catch (InvalidPersonFormatException e){
+                    } catch (InvalidPersonFormatException e) {
                         warning.setTitle("Warnig");
                         warning.setHeaderText(e.getMessage());
                         warning.showAndWait();
                     }
                     break;
                 case "jobj":
-                    try{
-                        ReaderJObj readerObjJObj = new ReaderJObj();
-                        personData = readerObjJObj.read(selectedFile);
-                    }catch (InvalidPersonFormatException e){
-                        warning.setTitle("Warning");
-                        warning.setHeaderText(e.getMessage());
-                        warning.showAndWait();
-                    }
+                    ReaderJObj readerObjJObj = new ReaderJObj();
+                    personData = readerObjJObj.read(selectedFile);
                     break;
                 default:
-                        warning.setTitle("Warning");
-                        warning.setHeaderText("ingen riktige filer har blitt valgt.");
-                        warning.showAndWait();
+                    warning.setTitle("Warning");
+                    warning.setHeaderText("Ikke en riktig fil format!");
+                    warning.showAndWait();
                     break;
             }
-            for (PersonDataModel p : personData){
-                collection.leggTilEllement(p);
-            }
+        }else{
+            error.setTitle("Error");
+            error.setHeaderText("Ingen filer er valgt");
+            error.showAndWait();
+        }
+        for (PersonDataModel p : personData){
+            collection.leggTilEllement(p);
         }
     }
     /**en metode for å skrive til fil. WriterTxt klassen.*/
     @FXML
-    void saveFile(ActionEvent event) throws IOException {
+    void saveFile(ActionEvent event){
         FileChooser files = new FileChooser();
         files.setTitle("Lagrings vindu");
         files.getExtensionFilters().addAll(
@@ -215,7 +176,6 @@ public class Controller implements Initializable {
         File selectedFile = files.showSaveDialog(saveFile.getParentPopup().getScene().getWindow());
 
         if(selectedFile != null) {
-
             FileExtentionFilter extention = new FileExtentionFilter();
             String extentionFilter = extention.getExtention(selectedFile);
             switch (extentionFilter) {
@@ -229,10 +189,14 @@ public class Controller implements Initializable {
                     break;
                 default:
                     warning.setTitle("Warning");
-                    warning.setHeaderText("ingen filer er valgt");
+                    warning.setHeaderText("Ikke en riktig fil format!");
                     warning.showAndWait();
                     break;
             }
+        }else{
+            error.setTitle("Error");
+            error.setHeaderText("Ingen filer er valgt");
+            error.showAndWait();
         }
     }
     //lukker stagen.

@@ -9,7 +9,7 @@ which allows the user to:
   also saving data as a java object file (.jobj). 
 - Load data to a tableview from text and jobj files which is written by the program.
 - Change the information which is loaded to the table and rewrite them by clicking on the cells. 
-- Searchig for data which is loaded to the table.  
+- Searching for data which is loaded to the table.  
 
 
  

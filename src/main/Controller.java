@@ -147,8 +147,14 @@ public class Controller implements Initializable {
                     }
                     break;
                 case "jobj":
-                    ReaderJObj readerObjJObj = new ReaderJObj();
-                    personData = readerObjJObj.read(selectedFile);
+                    try {
+                        ReaderJObj readerObjJObj = new ReaderJObj();
+                        personData = readerObjJObj.read(selectedFile);
+                    }catch (IOException|ClassNotFoundException e){
+                        warning.setTitle("Warning");
+                        warning.setHeaderText(e.getMessage());
+                        warning.showAndWait();
+                    }
                     break;
                 default:
                     warning.setTitle("Warning");
@@ -160,6 +166,7 @@ public class Controller implements Initializable {
             error.setTitle("Error");
             error.setHeaderText("Ingen filer er valgt");
             error.showAndWait();
+            personData.clear();
         }
         for (PersonDataModel p : personData){
             collection.leggTilEllement(p);

@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ReaderJObj implements ReaderIntefase {
-    public ArrayList<PersonDataModel> read(File path)throws IOException {
+    public ArrayList<PersonDataModel> read(File path)throws IOException,ClassNotFoundException {
         ArrayList<PersonDataModel> personList = new ArrayList<>();
         try{
             FileInputStream file = new FileInputStream(path);

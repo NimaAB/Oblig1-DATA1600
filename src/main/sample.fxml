@@ -32,7 +32,7 @@
                 <TextField fx:id="yearTxt" alignment="CENTER" layoutX="197.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="År" />
                 <TextField fx:id="monthTxt" alignment="CENTER" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Måned" />
                 <TextField fx:id="dayTxt" alignment="CENTER" layoutX="18.0" layoutY="214.0" prefHeight="25.0" prefWidth="58.0" promptText="Dag" AnchorPane.leftAnchor="16.0" />
-                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="68.0" text="register" />
+                <Button layoutX="18.0" layoutY="263.0" mnemonicParsing="false" onAction="#addObjToTable" prefHeight="25.0" prefWidth="68.0" text="Register" />
             </children></AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="480.0" prefWidth="517.0">
             <children>
